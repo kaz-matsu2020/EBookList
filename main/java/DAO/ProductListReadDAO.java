@@ -27,7 +27,7 @@ public class ProductListReadDAO {
 		// データベースに接続
 		try(Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			//select文を準備
-			String sql = "select product_id, product_name, price, top_image from Product";
+			String sql = "select product_id, product_name, price, top_image from product";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			// selectを実行
