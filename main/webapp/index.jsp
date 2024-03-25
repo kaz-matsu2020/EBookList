@@ -9,5 +9,6 @@
 <body>
 <h1>E-Book-List</h1>
 <jsp:include page="WEB-INF/jsp/isLogin.jsp" />
+<jsp:include page="WEB-INF/jsp/eBookList.jsp" />
 </body>
 </html>

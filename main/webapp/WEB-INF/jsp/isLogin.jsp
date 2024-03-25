@@ -4,12 +4,14 @@
 <c:choose>
 <c:when test="${empty user}">
 <p>
-<a href="LoginServlet">ログイン</a>
+<a href="LoginServlet">ログイン</a><br>
+<a href="index.jsp">トップへ</a>
 </p>
 </c:when>
 <c:otherwise>
 <p>
 ${user.name}さん<br>
+<a href="index.jsp">トップへ</a><br>
 <a href="MyPageServlet">マイページ</a><br>
 <a href="LogoutServlet">ログアウト</a>
 </p>

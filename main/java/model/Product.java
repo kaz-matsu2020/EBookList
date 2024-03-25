@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Product implements Serializable {
 	private String productId;
-	private String productName;
+	private String name;
 	private int price;
 	private String distributorId;
 	private Date saleDate;
@@ -16,15 +16,25 @@ public class Product implements Serializable {
 	private String introduceComment;
 	
 	public Product() {}
-	public Product(String productId, String productName, int price, String topImage) {
+	public Product(String productId, String name, int price, String topImage) {
 		this.productId = productId;
-		this.productName = productName;
+		this.name = name;
 		this.price = price;
 		this.topImage = topImage;
 	}
+	public Product(String productId, String name, int price, String distributorId, Date saleDate, Date updateDate,String topImage, String introduceComment) {
+		this.productId = productId;
+		this.name = name;
+		this.price = price;
+		this.distributorId = distributorId;
+		this.saleDate = saleDate;
+		this.updateDate = updateDate;
+		this.topImage = topImage;
+		this.introduceComment = introduceComment;
+	}
 	
 	public void setProductId(String productId) { this.productId = productId; }
-	public void setProductName(String productName) { this.productName = productName; }
+	public void setName(String name) { this.name = name; }
 	public void setPrice(int price) { this.price = price; }
 	public void setDistributorId(String distributorId) { this.distributorId = distributorId; }
 	public void setSaleDate(Date saleDate) { this.saleDate = saleDate; }
@@ -34,7 +44,7 @@ public class Product implements Serializable {
 	public void setIntroduceComment(String introduceComment) { this.introduceComment = introduceComment; }
 	
 	public String getProductId() { return productId; }
-	public String getProductName() { return productName; }
+	public String getName() { return name; }
 	public int getPrice() { return price; }
 	public String getDistributorId() { return distributorId; }
 	public Date getSaleDate() { return saleDate; }
