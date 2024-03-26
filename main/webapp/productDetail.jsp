@@ -17,8 +17,14 @@
 出版日:${productDetail.saleDate}<br>
 更新日:${productDetail.updateDate}<br>
 商品紹介:${productDetail.introduceComment}<br>
-コメント一覧:<br>
 購入ボタン:<br>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; width: 350px;">
+コメント一覧<br>
+<c:forEach var="comment" items="${commentList}">
+<c:out value="${comment.userId}" />:<c:out value="${comment.commentDate}" /><br>
+<c:out value="${comment.evaComment}" /><br>
+</c:forEach>
+</div>
 コメント投稿:
 </body>
 </html>

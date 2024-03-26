@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.DistributorDAO;
+import DAO.EvaluationCommentReadDAO;
 import DAO.ProductDetailDAO;
+import model.EvaluationComment;
 import model.Product;
 
 @WebServlet("/ProductDetailServlet")
@@ -29,10 +33,16 @@ public class ProductDetailServlet extends HttpServlet {
 		DistributorDAO readName = new DistributorDAO();
 		String distributorName = readName.ReadDistributorName(productDetail.getDistributorId());
 		
-		// リクエストパラメータにproductDetailとproductNameを保存
+		// EvaluationCommentの取得
+		List<EvaluationComment> commentList = new ArrayList<>();
+		EvaluationCommentReadDAO readComment = new EvaluationCommentReadDAO();
+		commentList = readComment.ReadCommentList(productId);
+		
+		// リクエストパラメータにproductDetail、productName、EvaluationCommentを保存
 		request.setCharacterEncoding("UTF-8");
 		request.setAttribute("productDetail", productDetail);
 		request.setAttribute("distributorName", distributorName);
+		request.setAttribute("commentList", commentList);
 		
 		// productDetail.jspにフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("productDetail.jsp");
