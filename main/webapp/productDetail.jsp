@@ -25,6 +25,15 @@
 <c:out value="${comment.evaComment}" /><br>
 </c:forEach>
 </div>
-コメント投稿:
+<c:if test="${user != null}">
+<form action="CommentPostServlet" method="post">
+コメント投稿:<input type="text" name="text"><br>
+<input type="submit" value="投稿">
+<input type="hidden" name="productId" value="${productDetail.productId}">
+</form>
+</c:if>
+<c:if test="${not empty errMsg}">
+${errMsg}
+</c:if>
 </body>
 </html>

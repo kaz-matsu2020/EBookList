@@ -3,23 +3,16 @@ package DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.EvaluationComment;
-
-public class EvaluationCommentPostDAO {
+public class PostedCheckDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
 	
-	public boolean CommentPost (EvaluationComment comment){
-		EvaluationComment addComment = new EvaluationComment();
-		addComment = comment;
-		String userId = addComment.getUserId();
-		String productId = addComment.getProductId();
-		String evaComment = addComment.getEvaComment();
-		java.sql.Date commentDate = addComment.getCommentDate();
-		boolean postOk = false;
+	public boolean PostedCheck (String userId, String productId){
+		boolean check = false;
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -33,17 +26,19 @@ public class EvaluationCommentPostDAO {
 			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS); 
 			
 			// sql処理を記述
-			String sql = "insert into evaluationcomment (user_id, product_id, eva_comment, comment_date) values (?, ?, ?, ?)";
+			String sql = "user_id from evaluationcomment where user_id = ? and product_id = ?";
 			PreparedStatement pStmt = con.prepareStatement(sql);
-			pStmt = con.prepareStatement(sql);
+			
+			// sql文中の｢?｣に使用する値を設定してSQL文を完成
 			pStmt.setString(1, userId);
 			pStmt.setString(2, productId);
-			pStmt.setString(3, evaComment);
-			pStmt.setDate(4, commentDate);
-			int r = pStmt.executeUpdate();
-			if(r != 0) { postOk = true; }
-			return postOk;
 			
+			// sqlを実行
+			ResultSet rs = pStmt.executeQuery();
+			if(rs.next()) {
+				check = true;
+			}
+			return check;
 		} catch(SQLException e) {
 			e.printStackTrace();
 			return false;

@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import model.EvaluationComment;
@@ -43,7 +42,7 @@ public class EvaluationCommentReadDAO {
 				EvaluationComment c;
 				String userId = rs.getString("user_id");
 				String comment = rs.getString("eva_comment");
-				Date date = rs.getDate("comment_date");
+				java.sql.Date date = rs.getDate("comment_date");
 				c = new EvaluationComment(userId, productId, comment, date);
 				commentList.add(c);
 			}
