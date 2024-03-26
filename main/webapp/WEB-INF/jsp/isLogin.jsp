@@ -5,6 +5,7 @@
 <c:when test="${empty user}">
 <p>
 <a href="LoginServlet">ログイン</a><br>
+<a href="UserRegisterServlet">ユーザー登録</a><br>
 <a href="index.jsp">トップへ</a>
 </p>
 </c:when>

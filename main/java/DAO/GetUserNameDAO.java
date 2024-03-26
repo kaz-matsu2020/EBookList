@@ -26,7 +26,7 @@ public class GetUserNameDAO {
 				String sql = "select name from users where user_id = ?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 				
-				// insert文中の｢?｣に使用する値を設定してSQL文を完成
+				// sql文中の｢?｣に使用する値を設定してSQL文を完成
 				pStmt.setString(1, userId);
 				
 				// selectを実行

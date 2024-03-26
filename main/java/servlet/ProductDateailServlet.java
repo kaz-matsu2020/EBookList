@@ -17,16 +17,21 @@ public class ProductDateailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// リクエストパラメータからproductIdを取得
+		// productIdに対応したデータをデータベースから取得
 		request.setCharacterEncoding("UTF-8");
 		String productId = request.getParameter("productId");
 		ProductDetailDAO readDetail = new ProductDetailDAO();
 		Product productDetail = readDetail.ReadProductDetail(productId);
 		
-		// distributorIdからdistributorNameをとってくる必要あり
+		// distributorIdからdistributorNameを取得
 		
+		
+		// リクエストパラメータにproductDetailを保存
 		request.setCharacterEncoding("UTF-8");
 		request.setAttribute("productDetail", productDetail);
 		
+		// productDetail.jspにフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("productDetail.jsp");
 		dispatcher.forward(request, response);
 	}

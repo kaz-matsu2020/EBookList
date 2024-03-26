@@ -13,6 +13,7 @@
 パスワード:<input type="password" name="pass"><br>
 <input type="submit" value="ログイン">
 </form>
+<a href="UserRegisterServlet">ユーザー登録</a>
 <a href="index.jsp">トップへ</a>
 </body>
 </html>
