@@ -14,7 +14,7 @@ public class UserRegisterDAO {
 	public boolean userRegister(String userId, String pass, String mail, String name, int age) {
 		boolean registerOK = false;
 		try {
-			// step1.JDBCドライバを読み込む
+			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
 		} catch (ClassNotFoundException e) {
 			throw new IllegalStateException("JDBCを読み込めませんでした");
@@ -22,10 +22,9 @@ public class UserRegisterDAO {
 		
 		Connection con = null;
 		try {
-			// step2.データベースに接続
+			// データベースに接続
 			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS); 
 			
-			// step3.SQL送信処理
 			// sql処理を記述
 			String sql = "select user_id from users where user_id = ?";
 			PreparedStatement pStmt = con.prepareStatement(sql);
@@ -50,7 +49,7 @@ public class UserRegisterDAO {
 					e.printStackTrace();
 					return false;
 				} finally {
-					// step4.データベース接続の切断
+					// データベース接続の切断
 					if (con != null) {
 						try {
 							con.close();
@@ -66,7 +65,7 @@ public class UserRegisterDAO {
 			e.printStackTrace();
 			return false;
 		} finally {
-			// step4.データベース接続の切断
+			// データベース接続の切断
 			if (con != null) {
 				try {
 					con.close();

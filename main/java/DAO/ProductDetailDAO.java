@@ -10,24 +10,27 @@ import java.util.Date;
 import model.Product;
 
 public class ProductDetailDAO {
-	// データベース接続に使用する情報
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
 	
 	public Product ReadProductDetail(String productId) {
 		Product product = new Product();
-		//JDBCドライバを読み込む
 		try {
+			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
 		} catch (ClassNotFoundException e) {
 			throw new IllegalStateException("JDBCを読み込めませんでした");
 		}
-		// データベースに接続
-		try(Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+		
+		Connection con = null;
+		try {
+			// データベースに接続
+			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS); 
+			
 			//select文を準備
 			String sql = "select product_name, price, distributor_id, sale_date, update_date,  top_image, introduce_comment from product where product_id = ?";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
+			PreparedStatement pStmt = con.prepareStatement(sql);
 			
 			// sql文中の｢?｣に使用する値を設定してSQL文を完成
 			pStmt.setString(1, productId);
@@ -44,10 +47,20 @@ public class ProductDetailDAO {
 				String introComment = rs.getString("introduce_comment");
 				product = new Product(productId, name, price, distributorId, saleDate, updateDate, topImage, introComment);
 			}
+			return product;
+			
 		} catch(SQLException e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			// データベース接続の切断
+			if (con != null) {
+				try {
+					con.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		return product;
 	}
 }

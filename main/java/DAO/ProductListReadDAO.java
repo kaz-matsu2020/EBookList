@@ -11,24 +11,27 @@ import java.util.List;
 import model.Product;
 
 public class ProductListReadDAO {
-	// データベース接続に使用する情報
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
 	
 	public List<Product> ReadProductList() {
 		List<Product> productList = new ArrayList<>();
-		//JDBCドライバを読み込む
 		try {
+			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
 		} catch (ClassNotFoundException e) {
 			throw new IllegalStateException("JDBCを読み込めませんでした");
 		}
-		// データベースに接続
-		try(Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+		
+		Connection con = null;
+		try {
+			// データベースに接続
+			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS); 
+			
 			//select文を準備
 			String sql = "select product_id, product_name, price, top_image from product";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
+			PreparedStatement pStmt = con.prepareStatement(sql);
 			
 			// selectを実行
 			ResultSet rs = pStmt.executeQuery();
@@ -40,10 +43,20 @@ public class ProductListReadDAO {
 				Product product = new Product(id, name, price, topImage);
 				productList.add(product);
 			}
+			return productList;
+			
 		} catch(SQLException e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			// データベース接続の切断
+			if (con != null) {
+				try {
+					con.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		return productList;
 	}
 }
