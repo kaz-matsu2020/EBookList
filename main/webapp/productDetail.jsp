@@ -13,7 +13,7 @@
 <img src="${pageContext.request.contextPath}/${productDetail.topImage}" alt="topImage" width="300px" border="3"><br>
 名前:${productDetail.name}<br>
 価格:${productDetail.price}<br>
-<a href="DistributorServlet">販売業者:${productDetail.distributorId}</a><br>
+<a href="DistributorServlet">販売業者:${distributorName}</a><br>
 出版日:${productDetail.saleDate}<br>
 更新日:${productDetail.updateDate}<br>
 商品紹介:${productDetail.introduceComment}<br>

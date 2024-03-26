@@ -5,17 +5,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
-
-import model.Product;
 
 public class DistributorDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
 	
-	public Product ReadProductDetail(String productId){
-		Product product = new Product();
+	public String ReadDistributorName(String distributorId){
+		String distributorName = null;
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -29,25 +26,18 @@ public class DistributorDAO {
 			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS); 
 			
 			// sql処理を記述
-			String sql = "select product_name, price, distributor_id, sale_date, update_date,  top_image, introduce_comment from product where product_id = ?";
+			String sql = "select name from distributor where distributor_id = ?";
 			PreparedStatement pStmt = con.prepareStatement(sql);
 			
 			// sql文中の｢?｣に使用する値を設定してSQL文を完成
-			pStmt.setString(1, productId);
+			pStmt.setString(1, distributorId);
 			
 			// sqlを実行
 			ResultSet rs = pStmt.executeQuery();
 			if(rs.next()) {
-				String name = rs.getString("product_name");
-				int price = rs.getInt("price");
-				String distributorId = rs.getString("distributor_id");
-				Date saleDate = rs.getDate("sale_date");
-				Date updateDate = rs.getDate("update_date");
-				String topImage = rs.getString("top_image");
-				String introComment = rs.getString("introduce_comment");
-				product = new Product(productId, name, price, distributorId, saleDate, updateDate, topImage, introComment);
+				distributorName = rs.getString("name");
 			}
-			return product;
+			return distributorName;
 		} catch(SQLException e) {
 			e.printStackTrace();
 			return null;
