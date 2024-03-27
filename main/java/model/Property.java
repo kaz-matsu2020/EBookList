@@ -8,6 +8,11 @@ public class Property implements Serializable{
 	private String productId;
 	
 	public Property() { }
+	public Property(int propertyNumber, String userId, String productId) {
+		this.propertyNumber = propertyNumber;
+		this.userId = userId;
+		this.productId = productId;
+	}
 
 	public int getPropertyNumber() { return propertyNumber; }
 	public void setPropertyNumber(int propertyNumber) { this.propertyNumber = propertyNumber; }

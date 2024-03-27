@@ -17,7 +17,11 @@
 出版日:${productDetail.saleDate}<br>
 更新日:${productDetail.updateDate}<br>
 商品紹介:${productDetail.introduceComment}<br>
-購入ボタン:<br>
+<c:if test="${user.userId != null}">
+<form action="PurchaseServlet" method="get">
+<input type="submit" value="購入"><br>
+</form>
+</c:if>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; width: 350px;">
 コメント一覧<br>
 <c:forEach var="comment" items="${commentList}">
