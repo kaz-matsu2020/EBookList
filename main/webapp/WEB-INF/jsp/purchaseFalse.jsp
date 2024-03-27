@@ -7,6 +7,7 @@
 <title>E-Book-List</title>
 </head>
 <body>
-
+<h1>購入失敗しました</h1>
+<jsp:include page="isLogin.jsp" />
 </body>
 </html>
