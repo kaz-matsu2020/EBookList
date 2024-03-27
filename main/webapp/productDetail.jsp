@@ -25,9 +25,8 @@
 <c:out value="${comment.evaComment}" />
 <c:if test="${comment.userId == user.userId}">
 <br>
-<form action="CommentDeleatServlet" method="post">
+<form action="CommentDeleteServlet" method="post">
 <input type="submit" value="コメントを削除">
-<input type="hidden" value="comment">
 </form>
 </c:if>
 <br>
@@ -37,7 +36,6 @@
 <form action="CommentPostServlet" method="post">
 コメント投稿:<input type="text" name="text"><br>
 <input type="submit" value="投稿">
-<input type="hidden" name="productId" value="${productDetail.productId}">
 </form>
 </c:if>
 <c:if test="${not empty errMsg}">

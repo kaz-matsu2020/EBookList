@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,12 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.DistributorDAO;
 import DAO.EvaluationCommentPostDAO;
-import DAO.EvaluationCommentReadDAO;
 import DAO.PostedCheckDAO;
-import DAO.ProductDetailDAO;
 import model.EvaluationComment;
+import model.IndicateProductLogic;
 import model.Product;
 import model.User;
 
@@ -30,22 +27,14 @@ public class CommentPostServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// リクエストパラメータの取得
 		request.setCharacterEncoding("UTF-8");
-		String productId = request.getParameter("productId");
 		String text = request.getParameter("text");
 		
-		// productIdからproductDetail取得
-		ProductDetailDAO readDetail = new ProductDetailDAO();
-		Product productDetail = readDetail.ReadProductDetail(productId);
-		
-		// distributorIdからdistributorNameを取得
-		DistributorDAO readName = new DistributorDAO();
-		String distributorName = readName.ReadDistributorName(productDetail.getDistributorId());
-		
-		// コメント追加のためステータス取得しEvaluationCommentインスタンス生成
+		// コメント追加のためステータスを取得しEvaluationCommentインスタンス生成
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		String userId = user.getUserId();
-		
+		Product product = (Product)session.getAttribute("productDetail");
+		String productId = product.getProductId();
 		Date commentDate = new Date();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = simpleDateFormat.format(commentDate);
@@ -62,20 +51,14 @@ public class CommentPostServlet extends HttpServlet {
     		boolean commentPostOk = addCommentLogic.CommentPost(addComment);
     		if(!commentPostOk) { 
     			errMsg = "コメント投稿に失敗しました";
+    			request.setAttribute("errMsg", errMsg);
     		}
         }
 		
-		// EvaluationCommentの取得
-		List<EvaluationComment> commentList = new ArrayList<>();
-		EvaluationCommentReadDAO readComment = new EvaluationCommentReadDAO();
-		commentList = readComment.ReadCommentList(productId);
-		
-		// リクエストパラメータにproductDetail、productName、EvaluationCommentを保存
-		request.setCharacterEncoding("UTF-8");
-		request.setAttribute("productDetail", productDetail);
-		request.setAttribute("distributorName", distributorName);
-		request.setAttribute("commentList", commentList);
-		request.setAttribute("errMsg", errMsg);
+        // セッションにEvaluationCommentを保存
+        IndicateProductLogic ipl = new IndicateProductLogic();
+        List<EvaluationComment> commentList = ipl.IndicateComment(productId);
+        session.setAttribute("commentList", commentList);
 		
 		// productDetail.jspにフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("productDetail.jsp");
