@@ -22,10 +22,18 @@
 コメント一覧<br>
 <c:forEach var="comment" items="${commentList}">
 <c:out value="${comment.userId}" />:<c:out value="${comment.commentDate}" /><br>
-<c:out value="${comment.evaComment}" /><br>
+<c:out value="${comment.evaComment}" />
+<c:if test="${comment.userId == user.userId}">
+<br>
+<form action="CommentDeleatServlet" method="post">
+<input type="submit" value="コメントを削除">
+<input type="hidden" value="comment">
+</form>
+</c:if>
+<br>
 </c:forEach>
 </div>
-<c:if test="${user != null}">
+<c:if test="${user.userId != null}">
 <form action="CommentPostServlet" method="post">
 コメント投稿:<input type="text" name="text"><br>
 <input type="submit" value="投稿">

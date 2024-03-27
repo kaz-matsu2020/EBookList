@@ -41,9 +41,10 @@ public class EvaluationCommentReadDAO {
 			while(rs.next()) {
 				EvaluationComment c;
 				String userId = rs.getString("user_id");
+				String trimUserId = userId.trim();
 				String comment = rs.getString("eva_comment");
 				java.sql.Date date = rs.getDate("comment_date");
-				c = new EvaluationComment(userId, productId, comment, date);
+				c = new EvaluationComment(trimUserId, productId, comment, date);
 				commentList.add(c);
 			}
 			return commentList;
