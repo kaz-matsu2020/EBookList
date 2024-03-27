@@ -45,7 +45,6 @@ public class CommentPostServlet extends HttpServlet {
         PostedCheckDAO postedCheckDAO = new PostedCheckDAO();
         boolean postedCheck = postedCheckDAO.PostedCheck(userId, productId);
         String errMsg = null;
-        System.out.println(postedCheck);
         if(!postedCheck) {
         	EvaluationCommentPostDAO addCommentLogic = new EvaluationCommentPostDAO();
     		boolean commentPostOk = addCommentLogic.CommentPost(addComment);
@@ -54,7 +53,6 @@ public class CommentPostServlet extends HttpServlet {
     			request.setAttribute("errMsg", errMsg);
     		}
         }
-		
         // セッションにEvaluationCommentを保存
         IndicateProductLogic ipl = new IndicateProductLogic();
         List<EvaluationComment> commentList = ipl.IndicateComment(productId);
