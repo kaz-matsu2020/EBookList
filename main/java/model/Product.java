@@ -19,6 +19,9 @@ public class Product implements Serializable {
 	public Product(String productId) {
 		this.productId = productId;
 	}
+	public Product(List<String> imageList) {
+		this.detailImage = imageList;
+	}
 	public Product(String productId, String name, int price, String topImage) {
 		this.productId = productId;
 		this.name = name;
