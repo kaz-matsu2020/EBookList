@@ -14,6 +14,8 @@ pleiades(2024)
 
 ### ER図  
 
+<img src="ER図.png" width="50%" />  
+
 ### 機能一覧  
 
 1. ログイン機能  
