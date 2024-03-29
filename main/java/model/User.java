@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 
+// ユーザーのjavabeans
+
 public class User implements Serializable{
 	private String userId;
 	private String pass;

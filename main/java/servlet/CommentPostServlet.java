@@ -20,6 +20,20 @@ import model.IndicateProductLogic;
 import model.Product;
 import model.User;
 
+// コメント投稿のためのコントローラー。productDetail.jspからリクエストを受ける
+// 投稿に必要なデータはコメントのテキスト、ユーザーID、商品ID、現在時刻の4つ
+// 1.リクエストパラメータからtextを取得
+// 2.セッションスコープからUser型を取得し、そこからuserIdを取得
+// 3.セッションスコープからProduct型を取得し、そこからproductIdを取得
+// 4.Date型を作成し現在時刻を取得。Date型をjava.sql.Date型に変換
+
+// 同一書籍に同一ユーザーが複数コメントすることはできない
+// PostedCheckDAOクラスの戻り値boolean型のPostedCheck(ユーザーID, 商品ID)メソッドを使用して判定
+// 過去にポストがない場合、EvaluationCommentPostDAOクラスのメソッドを使用
+// 戻り値boolean型のメソッドCommentPost(EvaluationComment型)を使ってコメント投稿の処理を行う
+// 投稿コメントを表示させるため、投稿処理後にデータベースからList<EvaluationComment>型のコメントリストを取得
+// セッションスコープにList<EvaluationComment>型を保存してproductDetail.jspにフォワードする
+
 @WebServlet("/CommentPostServlet")
 public class CommentPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -30,6 +44,7 @@ public class CommentPostServlet extends HttpServlet {
 		String text = request.getParameter("text");
 		
 		// コメント追加のためステータスを取得しEvaluationCommentインスタンス生成
+		// 必要なステータスはuserId,productId,投稿テキスト,現在日時の4つ
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		String userId = user.getUserId();
@@ -41,7 +56,8 @@ public class CommentPostServlet extends HttpServlet {
         java.sql.Date sqlCommentDate = java.sql.Date.valueOf(formattedDate);
         EvaluationComment addComment = new EvaluationComment(userId, productId, text, sqlCommentDate);
         
-        // 過去に投稿していないかをチェックし投稿がなければEvaluationCommentPostDAOでコメント追加メソッドを実行
+        // 過去に投稿していないかをチェック。PostedCheckDAOのメソッドを使用
+        // 投稿がなければEvaluationCommentPostDAOでコメント追加メソッドを実行
         PostedCheckDAO postedCheckDAO = new PostedCheckDAO();
         boolean postedCheck = postedCheckDAO.PostedCheck(userId, productId);
         String errMsg = null;

@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 
+// 販売業者のjavabeans
+
 public class Distributor implements Serializable{
 	private String distributorId;
 	private String pass;

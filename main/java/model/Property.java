@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 
+// 各ユーザーの購入物のjavabeans
+
 public class Property implements Serializable{
 	private int propertyNumber;
 	private String userId;
