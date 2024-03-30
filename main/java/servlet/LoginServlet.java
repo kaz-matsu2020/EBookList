@@ -18,11 +18,20 @@ import model.LoginLogic;
 import model.Property;
 import model.User;
 
+// isLogin.jspからGETリクエストを受けてlogin.jspにフォワード
+// login.jspからPOSTリクエストを受けてログイン処理をするためのコントローラー
+// 処理にはString ユーザーID と String パスワードを使ってデータベースと照合する
+
+// ユーザーIDとパスワードはリクエストパラメータから取得
+// LoginLogicクラスのメソッド、戻り値boolean型のexecute(String ユーザーID, String パスワード)を使用
+// ログイン成功ならユーザーIDからUser型とList<Property>型を取得してセッションスコープに保存してindex.jspにフォワードする 
+
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// login.jspにフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -33,10 +42,12 @@ public class LoginServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String pass = request.getParameter("pass");
 		
-		// ログイン判定
-		// ログイン成功ならデータベースから名前を取得
+		// ログイン判定をしてログイン成功ならデータベースから名前を取得
 		// userIdとnameだけのUserインスタンス生成
 		// userIdからpropetyをデータベースから取得
+		// user型とList<Property>型をセッションスコープに保存
+		// ログイン成功ならindex.jspにフォワード
+		// ログイン失敗なたloginFalse.jspにフォワード
 		LoginLogic loginCheck = new LoginLogic();
 		boolean isLogin = loginCheck.execute(userId, pass);
 		if(isLogin) {

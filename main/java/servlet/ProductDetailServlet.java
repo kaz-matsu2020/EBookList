@@ -15,12 +15,15 @@ import model.EvaluationComment;
 import model.IndicateProductLogic;
 import model.Product;
 
-// eBookList.jspからリクエストを受けて商品の詳細(商品詳細、販売業者、商品についてるコメント)を表示するためのコントローラー
-// String productIdをリクエストパラメータから取得
-// IndicateProductLogicクラス(modelパッケージ)のメソッドを3つ使う。3つとも引数はString productId
-// 1.Product型のインスタンスを生成。戻り値がProduct型のメソッドIndicateDetail(String productId)を使用
-// 2.String distributorNameを取得。戻り値がString型のメソッドIndicateDistributorName(String productId)を使用
-// 3.List<EvaluationCommen>を取得。戻り値がList<EvaluationCommnet>型のメソッドIndicateComment(String productId)を使用
+// eBookList.jspからGETリクエストを受けて商品の詳細(商品詳細、販売業者、商品についてるコメント)を表示するためのコントローラー
+
+// 処理内容
+// IndicateProductLogicクラス(modelパッケージ)のメソッドを3つ使って商品詳細、販売業者、コメントを取得する
+// 3つのメソッド全ての引数がString 商品IDとなっている
+// 商品IDはリクエストパラメータから取得する
+// 商品詳細を取得するメソッドは戻り値がProduct型のIndicateDetail(String 商品ID)を使用
+// 販売業者を取得するメソッドは戻り値がString型のIndicateDistributorName(String 商品ID)を使用
+// コメントを取得するメソッドは戻り値がList<EvaluationCommnet>型のIndicateComment(String 商品ID)を使用
 // 上記3つをセッションスコープに保存してproductDetail.jspにフォワードする
 
 @WebServlet("/ProductDetailServlet")

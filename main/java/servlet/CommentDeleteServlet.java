@@ -17,6 +17,13 @@ import model.IndicateProductLogic;
 import model.Product;
 import model.User;
 
+// productDetail.jspからのリクエストでコメントを削除するためのコントローラー
+// コメントを削除した後にコメントリストを取得しなおして、セッションスコープに保存してproductDetail.jspにフォワードする
+
+// 処理内容
+// 削除にはEvaluationCommentLogicクラスの戻り値boolean型のcommentDelete(String 商品ID,String ユーザーID)メソッドを使用する
+// 引数の商品IDはセッションスコープからProduct型を取得しgetProductId()を使用
+// ユーザーIDはセッションスコープからUser型を取得しgetUserId()を使用
 
 @WebServlet("/CommentDeleteServlet")
 public class CommentDeleteServlet extends HttpServlet {
@@ -34,16 +41,17 @@ public class CommentDeleteServlet extends HttpServlet {
 		EvaluationCommentLogic delLogic = new EvaluationCommentLogic();
 		boolean deleatDone = delLogic.commentDelete(productId, userId);
 		
-		// 削除成功ならproductとコメントを取得してフォワード
+		// 削除成功ならコメントリストを取得してセッションスコープに保存
 		// 失敗ならerrMsgを残してフォワード
-		if(!deleatDone) { 
-			String errMsg = "削除は失敗です";
-			request.setAttribute("errMsg", errMsg);
+		if(deleatDone) {
+			// セッションにEvaluationCommentを保存
+			IndicateProductLogic ipl = new IndicateProductLogic();
+			List<EvaluationComment> commentList = ipl.IndicateComment(productId);
+			session.setAttribute("commentList", commentList);
+			} else {
+				String errMsg = "削除は失敗です";
+				request.setAttribute("errMsg", errMsg);
 			}
-		// セッションにEvaluationCommentを保存
-		IndicateProductLogic ipl = new IndicateProductLogic();
-		List<EvaluationComment> commentList = ipl.IndicateComment(productId);
-		session.setAttribute("commentList", commentList);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("productDetail.jsp");
 		dispatcher.forward(request, response);

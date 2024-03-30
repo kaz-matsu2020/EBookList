@@ -14,6 +14,15 @@ import DAO.PurchaseDAO;
 import model.Product;
 import model.User;
 
+// productDetail.jspからGETリクエストを受けてpurchase.jspにフォワード
+// purchase.jspからPOSTリクエストを受けて購入処理をするためのコントローラー
+
+// 処理内容
+// 購入処理はPurchaseDAOのメソッドで、戻り値boolean型のexecute(String ユーザーID, String 商品ID)を使用
+// 引数に使用するものについては、まずセッションスコープからUser型とProduct型を取得し、getterでユーザーIDと商品IDを取得する
+// trueが返ってくれば購入成功でpurchaseDone.jspにフォワードし
+// falseが返ってくれば購入失敗でpurchaseFalse.jspにフォワードする
+
 @WebServlet("/PurchaseServlet")
 public class PurchaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

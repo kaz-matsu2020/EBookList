@@ -12,6 +12,15 @@ import javax.servlet.http.HttpSession;
 
 import DAO.UserRegisterDAO;
 
+// login.jspからGETリクエストを受けてuserRegister.jspにフォワード
+// userRegister.jspからPOSTリクエストを受けてユーザー登録を処理するコントローラー
+
+// 処理内容
+// リクエストパラメータからユーザーID、パスワード、メール、名前、年齢を取得する
+// 登録はUserRegisterDAOクラスのメソッドで、戻り値boolean型のuserRegister(ユーザーID, パスワード, メール, 名前, 年齢)を使用
+// 上記メソッドでユーザーIDの重複確認が行われて
+// 登録成功ならuserRegisterResultOK.jspにフォワード
+// 失敗ならエラーメッセージをセッションスコープに保存してUserRegisterServletにリダイレクト
 
 @WebServlet("/UserRegisterServlet")
 public class UserRegisterServlet extends HttpServlet {
