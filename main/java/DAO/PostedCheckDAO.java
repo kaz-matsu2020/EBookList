@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+// 同一ユーザーが同一商品に複数コメントをしないようにするためのDAOで
+// 過去に投稿していればtrue、投稿してなければfalseを返す
+// 引数はString ユーザーID, String 商品ID
+
 public class PostedCheckDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";

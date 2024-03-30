@@ -10,6 +10,9 @@ import java.util.List;
 
 import model.Product;
 
+// 読書用に商品の中身を取得するためのDAO
+// 戻り値List<String>型で引数はString 商品ID
+
 public class ReadingProductDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";

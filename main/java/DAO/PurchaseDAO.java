@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+// 購入処理するためのDAO
+// 戻り値はboolean型で引数はString ユーザーID, String 商品ID
+
 public class PurchaseDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";

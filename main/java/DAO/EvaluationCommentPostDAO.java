@@ -7,6 +7,9 @@ import java.sql.SQLException;
 
 import model.EvaluationComment;
 
+// コメント投稿するためのDAO
+// 戻り値はboolean型で引数はEvaluationComment 投稿コメント
+
 public class EvaluationCommentPostDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";

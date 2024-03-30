@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+// ユーザー名を取得するためのDAO
+// ログイン成功したユーザーIDからユーザー名を取得するためのもの
+// 戻り値はString型で引数はString ユーザーID
+
 public class GetUserNameDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";

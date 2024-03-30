@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+// ユーザー登録するためのDAO
+// 戻り値boolean型
+// 引数 String userId, String pass, String mail, String name, int age
+
 public class UserRegisterDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";

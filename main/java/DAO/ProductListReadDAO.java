@@ -10,8 +10,8 @@ import java.util.List;
 
 import model.Product;
 
-// 書籍一覧をデータベースから取得するクラス
-// メソッドは戻り値がList<Product>型であるReadProductList()のみ用意
+// 書籍一覧を取得するためのDAO
+// 戻り値はList<Product>型で引数はなし
 
 public class ProductListReadDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";

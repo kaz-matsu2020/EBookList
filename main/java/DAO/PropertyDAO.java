@@ -10,6 +10,9 @@ import java.util.List;
 
 import model.Property;
 
+// 購入物だけを表示するために購入リストを取得するDAO
+// 戻り値はList<Property>型で引数はString ユーザーID
+
 public class PropertyDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";

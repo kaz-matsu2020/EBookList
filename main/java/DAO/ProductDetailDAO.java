@@ -9,6 +9,9 @@ import java.util.Date;
 
 import model.Product;
 
+// 商品詳細を取得するためのDAO
+// 戻り値はProduct型で引数は商品ID
+
 public class ProductDetailDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
