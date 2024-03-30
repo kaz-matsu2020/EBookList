@@ -5,45 +5,54 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>E-Book-List</title>
+<title>Product Detail</title>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+<header>
 <jsp:include page="WEB-INF/jsp/isLogin.jsp" />
-<h1>${productDetail.name}の詳細</h1>
-<img src="${pageContext.request.contextPath}/${productDetail.topImage}" alt="topImage" width="300px" border="3"><br>
-名前:${productDetail.name}<br>
-価格:${productDetail.price}<br>
-<a href="DistributorServlet">販売業者:${distributorName}</a><br>
-出版日:${productDetail.saleDate}<br>
-更新日:${productDetail.updateDate}<br>
-商品紹介:${productDetail.introduceComment}<br>
-<c:if test="${user.userId != null}">
-<form action="PurchaseServlet" method="get">
-<input type="submit" value="購入"><br>
-</form>
-</c:if>
-<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; width: 350px;">
-コメント一覧<br>
-<c:forEach var="comment" items="${commentList}">
-<c:out value="${comment.userId}" />:<c:out value="${comment.commentDate}" /><br>
-<c:out value="${comment.evaComment}" />
-<c:if test="${comment.userId == user.userId}">
-<br>
-<form action="CommentDeleteServlet" method="post">
-<input type="submit" value="コメントを削除">
-</form>
-</c:if>
-<br>
-</c:forEach>
+</header>
+<div class="containerDetail">
+  <h2>${productDetail.name}の詳細</h2>
+  <img src="${pageContext.request.contextPath}/${productDetail.topImage}" alt="Product Image" width="300px">
+  <div class="product-info">
+    <p>名前: ${productDetail.name}</p>
+    <p>価格: ${productDetail.price}</p>
+    <p>販売業者: <a href="DistributorServlet">${distributorName}</a></p>
+    <p>出版日: ${productDetail.saleDate}</p>
+    <p>更新日: ${productDetail.updateDate}</p>
+    <p>商品紹介: ${productDetail.introduceComment}</p>
+    <c:if test="${user.userId ne null}">
+      <form action="PurchaseServlet" method="get">
+        <input type="submit" value="購入">
+      </form>
+    </c:if>
+  </div>
+  <div class="comments">
+    <h2>コメント一覧</h2>
+    <c:forEach var="comment" items="${commentList}">
+      <div class="comment-item">
+        <p>${comment.userId}: ${comment.commentDate}</p>
+        <p>${comment.evaComment}</p>
+        <c:if test="${comment.userId eq user.userId}">
+          <form action="CommentDeleteServlet" method="post">
+            <input type="submit" value="コメントを削除">
+          </form>
+        </c:if>
+      </div>
+    </c:forEach>
+  </div>
+  <c:if test="${user.userId ne null}">
+    <div class="comment-form">
+      <form action="CommentPostServlet" method="post">
+        <input type="text" name="text" placeholder="コメント投稿">
+        <input type="submit" value="投稿">
+      </form>
+    </div>
+  </c:if>
+  <c:if test="${not empty errMsg}">
+    <p class="error-msg">${errMsg}</p>
+  </c:if>
 </div>
-<c:if test="${user.userId != null}">
-<form action="CommentPostServlet" method="post">
-コメント投稿:<input type="text" name="text"><br>
-<input type="submit" value="投稿">
-</form>
-</c:if>
-<c:if test="${not empty errMsg}">
-${errMsg}
-</c:if>
 </body>
 </html>
