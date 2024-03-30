@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+// ログイン処理のためにユーザーIDとパスワードが登録しているものと一致しているか判定するためのDAO
+// 戻り値boolean型で引数はString ユーザーID, String パスワード
+
 public class UserCheckDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
