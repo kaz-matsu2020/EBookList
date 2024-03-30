@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DAO.PropertyDAO;
 import DAO.PurchaseDAO;
 import model.Product;
+import model.Property;
 import model.User;
 
 // productDetail.jspからGETリクエストを受けてpurchase.jspにフォワード
@@ -40,11 +44,15 @@ public class PurchaseServlet extends HttpServlet {
 		String userId = user.getUserId();
 		String productId = productDetail.getProductId();
 		
-		// 購入メソッドを実行し成功ならpurchaseDone.jspにフォワード
+		// 購入メソッドを実行し成功ならpropertyListを更新してpurchaseDone.jspにフォワード
 		// 失敗ならpurchaseFalse.jspにフォワード
 		PurchaseDAO purchaseDAO = new PurchaseDAO();
 		boolean purchaseDone = purchaseDAO.execute(userId, productId);
 		if(purchaseDone) {
+			PropertyDAO propertyDAO = new PropertyDAO();
+			List<Property> propertyList = new ArrayList<>();
+			propertyList = propertyDAO.getProperty(userId);
+			session.setAttribute("propertyList", propertyList);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/purchaseDone.jsp");
 			dispatcher.forward(request, response);
 		} else {
