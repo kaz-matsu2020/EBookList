@@ -6,8 +6,6 @@
 
 pleiades(2024)  
 
-### URL  
-
 ### 画面遷移図  
 
 <img src="画面遷移図.jpg" width="50%" />  
