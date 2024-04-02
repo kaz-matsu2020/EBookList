@@ -7,22 +7,31 @@ import java.sql.SQLException;
 
 import model.EvaluationComment;
 
-// コメント投稿するためのDAO
-// 戻り値はboolean型で引数はEvaluationComment 投稿コメント
+/**
+ * コメント投稿のDAO
+ * @author kazuo
+ */
 
 public class EvaluationCommentPostDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
 	
+	/**
+	 * CommentPostメソッド
+	 * @param comment EvaluationComment型
+	 * @return コメント投稿が成功したか失敗したかの真偽値
+	 */
+	
 	public boolean CommentPost (EvaluationComment comment){
+		// 引数EvaluationComment型からuserId,productId,投稿するコメント,日時を取得
 		EvaluationComment addComment = new EvaluationComment();
 		addComment = comment;
 		String userId = addComment.getUserId();
 		String productId = addComment.getProductId();
 		String evaComment = addComment.getEvaComment();
 		java.sql.Date commentDate = addComment.getCommentDate();
-		boolean postOk = false;
+		boolean postOk;
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -44,7 +53,14 @@ public class EvaluationCommentPostDAO {
 			pStmt.setString(3, evaComment);
 			pStmt.setDate(4, commentDate);
 			int r = pStmt.executeUpdate();
-			if(r != 0) { postOk = true; }
+			if(r != 0) {
+				// 投稿成功なのでtrueを格納
+				postOk = true; 
+			} else {
+				// 投稿失敗なのでfalseを格納
+				postOk = false; 
+			}
+			// 投稿が成功したか失敗したかを返す
 			return postOk;
 			
 		} catch(SQLException e) {

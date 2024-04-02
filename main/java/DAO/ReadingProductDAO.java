@@ -10,13 +10,24 @@ import java.util.List;
 
 import model.Product;
 
-// 読書用に商品の中身を取得するためのDAO
+/**
+ * 読書用で商品の中身を取得するDAO
+ * @author kazuo
+ */
+
 // 戻り値List<String>型で引数はString 商品ID
 
 public class ReadingProductDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
+	
+	/**
+	 * ReadingProductメソッド
+	 * @param productId 文字列
+	 * @return productDetailテーブルから引数に対応したデータを格納したProduct型
+	 * productDetailテーブルのdetail_imageのみを扱う
+	 */
 	
 	public Product ReadingProduct(String productId) {
 		List<String> imageList = new ArrayList<>();

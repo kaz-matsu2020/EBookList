@@ -6,14 +6,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// ユーザー登録するためのDAO
-// 戻り値boolean型
-// 引数 String userId, String pass, String mail, String name, int age
+/**
+ * ユーザー登録するためのDAO
+ * @author kazuo
+ */
 
 public class UserRegisterDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
+	
+	/**
+	 * userRegisterメソッド
+	 * @param userId 文字列
+	 * @param pass 文字列
+	 * @param mail 文字列
+	 * @param name 文字列
+	 * @param age 整数値
+	 * @return ユーザー登録が成功か失敗かの真偽値
+	 */
 	
 	public boolean userRegister(String userId, String pass, String mail, String name, int age) {
 		boolean registerOK = false;
@@ -48,6 +59,7 @@ public class UserRegisterDAO {
 					pStmt.setString(4, name);
 					pStmt.setInt(5, age);
 					int r = pStmt.executeUpdate();
+					// 登録成功ならtrueを格納
 					if(r != 0) { registerOK = true; }
 				} catch(SQLException e) {
 					e.printStackTrace();

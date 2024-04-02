@@ -6,13 +6,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// ログイン処理のためにユーザーIDとパスワードが登録しているものと一致しているか判定するためのDAO
-// 戻り値boolean型で引数はString ユーザーID, String パスワード
+/**
+ * ユーザーIDとパスワードが登録情報と一致しているか判定するDAO
+ * @author kazuo
+ */
 
 public class UserCheckDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
+	
+	/**
+	 * executeメソッド
+	 * @param userId 文字列
+	 * @param pass 文字列
+	 * @return 引数を条件にusersテーブルから行が取得できればtrue,取得できなければfalse
+	 */
 	
 	public boolean execute(String userId, String pass){
 		boolean isLogin = false;

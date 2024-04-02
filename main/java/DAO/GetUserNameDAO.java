@@ -6,17 +6,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// ユーザー名を取得するためのDAO
-// ログイン成功したユーザーIDからユーザー名を取得するためのもの
-// 戻り値はString型で引数はString ユーザーID
+/**
+ * ログイン成功したユーザーのユーザー名を取得するためのDAO
+ * @author kazuo
+ */
 
 public class GetUserNameDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
 	
+	/**
+	 * executeメソッド
+	 * @param userId 文字列
+	 * @return 引数userIdに紐づいた文字列name
+	 */
+	
 	public String execute(String userId) {
-		String name = null;
+		String name;
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -38,7 +45,14 @@ public class GetUserNameDAO {
 			
 			// selectを実行
 			ResultSet rs = pStmt.executeQuery();
-			if(rs.next()) { name = rs.getString("name"); }
+			if(rs.next()) { 
+				// 取得できたユーザー名を格納
+				name = rs.getString("name"); 
+			} else {
+				// 取得できなかったのでnullを格納
+				name = null;
+			}
+			// 取得したユーザー名を返す
 			return name;
 			
 		} catch(SQLException e) {

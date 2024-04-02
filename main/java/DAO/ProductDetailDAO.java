@@ -9,13 +9,21 @@ import java.util.Date;
 
 import model.Product;
 
-// 商品詳細を取得するためのDAO
-// 戻り値はProduct型で引数は商品ID
+/**
+ * 商品詳細を取得するためのDAO
+ * @author kazuo
+ */
 
 public class ProductDetailDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
+	
+	/**
+	 * ReadProductDetailメソッド
+	 * @param productId 文字列
+	 * @return 引数に紐づいたProduct型
+	 */
 	
 	public Product ReadProductDetail(String productId) {
 		Product product = new Product();

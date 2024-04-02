@@ -10,13 +10,21 @@ import java.util.List;
 
 import model.Property;
 
-// 購入物だけを表示するために購入リストを取得するDAO
-// 戻り値はList<Property>型で引数はString ユーザーID
+/**
+ * 購入物だけを表示するためのリスト取得DAO
+ * @author kazuo
+ */
 
 public class PropertyDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
+	
+	/**
+	 * getPropertyメソッド
+	 * @param userId 文字列
+	 * @return propertyテーブルから引数に紐づいた情報を格納したProduct型のList型
+	 */
 	
 	public List<Property> getProperty(String userId) {
 		List<Property> propertyList = new ArrayList<>();

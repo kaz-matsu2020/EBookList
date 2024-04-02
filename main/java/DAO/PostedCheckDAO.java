@@ -6,17 +6,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// 同一ユーザーが同一商品に複数コメントをしないようにするためのDAOで
-// 過去に投稿していればtrue、投稿してなければfalseを返す
-// 引数はString ユーザーID, String 商品ID
+/**
+ * 過去に投稿しているかを調べるDAO
+ * @author kazuo
+ */
 
 public class PostedCheckDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
 	
+	/**
+	 * PostedCheckメソッド
+	 * @param userId 文字列
+	 * @param productId 文字列
+	 * @return 過去に投稿しているかどうかの真偽値
+	 */
+	
 	public boolean PostedCheck (String userId, String productId){
-		boolean check = false;
+		boolean check;
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -40,8 +48,13 @@ public class PostedCheckDAO {
 			// sqlを実行
 			ResultSet rs = pStmt.executeQuery();
 			if(rs.next()) {
+				// 過去に投稿があるのでtrueを格納
 				check = true;
+			} else {
+				// 過去に投稿がないのでfalseを格納
+				check = false;
 			}
+			// 過去に投稿があるかどうかを返す
 			return check;
 		} catch(SQLException e) {
 			e.printStackTrace();

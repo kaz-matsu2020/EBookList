@@ -5,13 +5,25 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * コメントを削除するためのDAO
+ * @author kazuo
+ */
+
 public class EvaluationCommentDeleteDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
 	
+	/**
+	 * CommentDeleteメソッド
+	 * @param productId 文字列
+	 * @param userId 文字列
+	 * @return 削除が成功したか失敗したかの真偽値
+	 */
+	
 	public boolean CommentDelete(String productId, String userId) {
-		boolean delDone = false;
+		boolean delDone;
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -34,7 +46,14 @@ public class EvaluationCommentDeleteDAO {
 			
 			// sqlを実行
 			int r = pStmt.executeUpdate();
-			if(r != 0) { delDone = true; }
+			if(r != 0) { 
+				// 削除成功なのでtrueを格納
+				delDone = true; 
+			} else {
+				// 削除失敗なのでfalseを格納
+				delDone = false;
+			}
+			// 削除成功したか失敗したかを返す
 			return delDone;
 		} catch(SQLException e) {
 			e.printStackTrace();

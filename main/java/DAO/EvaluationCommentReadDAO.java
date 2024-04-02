@@ -10,13 +10,21 @@ import java.util.List;
 
 import model.EvaluationComment;
 
-// 特定商品に投稿されたコメントのリストを取得するためのDAO
-// 戻り値はList<EvaluationComment>型で引数はString 商品ID
+/**
+ * 特定商品に対するコメントリストを取得するDAO
+ * @author kazuo
+ */
 
 public class EvaluationCommentReadDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
+	
+	/**
+	 * ReadCommentListメソッド
+	 * @param productId 文字列
+	 * @return 投稿コメント(EvaluationComment)のList型
+	 */
 	
 	public List<EvaluationComment> ReadCommentList(String productId) {
 		List<EvaluationComment> commentList = new ArrayList<>();

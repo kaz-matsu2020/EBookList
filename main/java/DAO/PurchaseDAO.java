@@ -6,13 +6,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// 購入処理するためのDAO
-// 戻り値はboolean型で引数はString ユーザーID, String 商品ID
+/**
+ * 購入済みかを判定して購入処理するDAO
+ * @author kazuo
+ */
 
 public class PurchaseDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
+	
+	/**
+	 * executeメソッド
+	 * @param userId 文字列
+	 * @param productId 文字列
+	 * @return propertyテーブルに引数に対応した行がなければtrue,あればfalse
+	 * 行がある=購入済みなので購入失敗としてfalseを返す
+	 */
 	
 	public boolean execute(String userId, String productId) {
 		boolean done = false;

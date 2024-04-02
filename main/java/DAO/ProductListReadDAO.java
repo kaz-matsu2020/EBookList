@@ -10,13 +10,21 @@ import java.util.List;
 
 import model.Product;
 
-// 書籍一覧を取得するためのDAO
-// 戻り値はList<Product>型で引数はなし
+/**
+ * 書籍一覧を取得するためのDAO
+ * @author kazuo
+ */
 
 public class ProductListReadDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
+	
+	/**
+	 * ReadProductListメソッド
+	 * @return productテーブル登録情報をProduct型に格納したList型
+	 * productテーブルに登録してあるproduct_id, product_name, price, top_imageのみを格納して返す
+	 */
 	
 	public List<Product> ReadProductList() {
 		List<Product> productList = new ArrayList<>();
