@@ -2,7 +2,10 @@ package model;
 
 import java.io.Serializable;
 
-// ユーザーのjavabeans
+/**
+ * ユーザーのjavabeans
+ * @author kazuo
+ */
 
 public class User implements Serializable{
 	private String userId;

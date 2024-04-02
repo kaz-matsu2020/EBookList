@@ -16,15 +16,18 @@ import javax.servlet.annotation.WebFilter;
 import DAO.ProductListReadDAO;
 import model.Product;
 
-// アプリケーション起動時に書籍一覧を取得するためのクラス
-// List<Product>型をアプリケーションスコープに保存する
-// データ取得はProductListReadDAOクラスのメソッドを使用する
-// 使用するメソッドは戻り値がList<Product>型のReadProductList()を使用
+/**
+ * アプリケーション起動時に書籍一覧を取得するためのクラス
+ * @author kazuo
+ */
 
 @WebFilter("/*")
 
 public class IndicateProduct implements Filter {
 	
+	/**
+	 * List<Product>型をアプリケーションスコープに保存する
+	 */
 	public void init(FilterConfig fConfig) throws ServletException {
 		// データベースからproductをReadしてListに入れる
 		List<Product> productList = new ArrayList<>();

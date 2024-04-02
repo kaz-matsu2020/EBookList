@@ -2,7 +2,10 @@ package model;
 
 import java.io.Serializable;
 
-// 評価コメントのjavabeans
+/**
+ * 投稿コメントのjavabeans
+ * @author kazuo
+ */
 
 public class EvaluationComment implements Serializable{
 	private String userId;

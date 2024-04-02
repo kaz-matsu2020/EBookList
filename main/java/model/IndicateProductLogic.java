@@ -7,14 +7,19 @@ import DAO.DistributorDAO;
 import DAO.EvaluationCommentReadDAO;
 import DAO.ProductDetailDAO;
 
-// productDetail.jspにて表示するためのクラスで,コントローラーで重複のある処理をまとめたクラス
-// メソッドは3つ。コメントを取得、商品概要を取得、販売業者名を取得。いずれも引数String productId。
-// 1.コメント取得のメソッド:戻り値List<EvaluationComment>型のIndicateComment(String productId)
-// 2.商品概要取得のメソッド:戻り値Product型のIndicateDetail(String productId)
-// 3.販売業者名取得のメソッド:戻り値String型のInidicateDistributorName(String productId)
-// CommentDetailServlet,CommentPostServlet,ProductDetailServletにて使用
+/**
+ * productDetail.jspにて表示するためのクラスで,重複のある処理をまとめたクラス
+ * @author kazuo
+ */
 
 public class IndicateProductLogic {
+	
+	/**
+	 * IndicateCommentメソッド
+	 * @param productId 文字列
+	 * @return 引数に対応したコメントをEvaluationCommentに格納したList型
+	 */
+	
 	public List<EvaluationComment> IndicateComment(String productId) {
 		// EvaluationCommentの取得
 		List<EvaluationComment> commentList = new ArrayList<>();
@@ -23,12 +28,24 @@ public class IndicateProductLogic {
 		return commentList;
 	}
 	
+	/**
+	 * IndicateDetailメソッド
+	 * @param productId 文字列
+	 * @return 引数に対応したProduct型
+	 */
+	
 	public Product IndicateDetail(String productId) {
 		// productIdからproductDetail取得
 		ProductDetailDAO readDetail = new ProductDetailDAO();
 		Product productDetail = readDetail.ReadProductDetail(productId);
 		return productDetail;
 	}
+	
+	/**
+	 * IndicateDistributorName
+	 * @param productId 文字列
+	 * @return 引数に対応した販売業者名を格納した文字列
+	 */
 	
 	public String IndicateDistributorName(String productId) {
 		// productIdからdistributorIdを取得

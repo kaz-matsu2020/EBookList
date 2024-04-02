@@ -2,7 +2,10 @@ package model;
 
 import java.io.Serializable;
 
-// 各ユーザーの購入物のjavabeans
+/**
+ * 各ユーザーの購入物javabeans
+ * @author kazuo
+ */
 
 public class Property implements Serializable{
 	private int propertyNumber;

@@ -2,7 +2,10 @@ package model;
 
 import java.io.Serializable;
 
-// 販売業者のjavabeans
+/**
+ * 販売業者のjavabeans
+ * @author kazuo
+ */
 
 public class Distributor implements Serializable{
 	private String distributorId;

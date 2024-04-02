@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-// 商品概要のjavabeans
+/**
+ * 商品概要のjavabeans
+ * @author kazuo
+ */
 
 public class Product implements Serializable {
 	private String productId;
