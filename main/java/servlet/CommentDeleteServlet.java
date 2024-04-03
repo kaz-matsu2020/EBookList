@@ -19,7 +19,7 @@ import model.User;
 
 /**
  * productDetail.jspからのリクエストを受けてコメントを削除するためのコントローラー
- * コメントを削除した後にコメントリストを取得しなおして、セッションスコープに保存してproductDetail.jspにフォワードする
+ * コメント削除後にコメントリスト(List<EvaluationComment>型)を取得しセッションスコープに保存,productDetail.jspにフォワードする
  * @author kazuo
  */
 
