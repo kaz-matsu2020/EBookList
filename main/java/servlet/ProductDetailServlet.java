@@ -15,31 +15,27 @@ import model.EvaluationComment;
 import model.IndicateProductLogic;
 import model.Product;
 
-// eBookList.jspからGETリクエストを受けて商品の詳細(商品詳細、販売業者、商品についてるコメント)を表示するためのコントローラー
-
-// 処理内容
-// IndicateProductLogicクラス(modelパッケージ)のメソッドを3つ使って商品詳細、販売業者、コメントを取得する
-// 3つのメソッド全ての引数がString 商品IDとなっている
-// 商品IDはリクエストパラメータから取得する
-// 商品詳細を取得するメソッドは戻り値がProduct型のIndicateDetail(String 商品ID)を使用
-// 販売業者を取得するメソッドは戻り値がString型のIndicateDistributorName(String 商品ID)を使用
-// コメントを取得するメソッドは戻り値がList<EvaluationCommnet>型のIndicateComment(String 商品ID)を使用
-// 上記3つをセッションスコープに保存してproductDetail.jspにフォワードする
+/**
+ * eBookList.jspからGETリクエストを受けて商品の詳細(商品詳細、販売業者、商品についてるコメント)を表示するためのコントローラー
+ * @author kazuo
+ */
 
 @WebServlet("/ProductDetailServlet")
 public class ProductDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// リクエストパラメータからproductIdを取得
+		// リクエストパラメータから 文字列 productIdを取得
 		request.setCharacterEncoding("UTF-8");
 		String productId = request.getParameter("productId");
 		
-		// セッションスコープにproductDetail、distributorName、EvaluationCommentを保存
+		// productIdを引数にして商品詳細,販売業者名,コメントを取得
+		// IndicateProductLogicのメソッドを使用する
 		IndicateProductLogic ipl = new IndicateProductLogic();
 		Product productDetail = ipl.IndicateDetail(productId);
 		String distributorName = ipl.IndicateDistributorName(productId);
 		List<EvaluationComment> commentList = ipl.IndicateComment(productId);
+		// セッションスコープにProduct型、文字列 ditributorName,List<EvaluationComment>型を保存
 		HttpSession session = request.getSession();
 		session.setAttribute("productDetail", productDetail);
 		session.setAttribute("distributorName", distributorName);

@@ -17,14 +17,11 @@ import model.Product;
 import model.Property;
 import model.User;
 
-// マイページで購入物だけを表示するためのコントローラー
-// isLogin.jspからリクエストを受ける
-// リクエストしたユーザーの購入物をList<Product>型で取得しmyPage.jspにフォワードする
-
-// 特定ユーザーの購入物を取得するには
-// セッションスコープからList<Property>型を取得しproductIdをfor文で取り出しつつデータベースからProduct型を読み出し
-// List<Product>型のaddメソッドで追加してセッションスコープに保存する
-// ログイン判定をして確認できればmyPage.jspにフォワード。失敗ならindex.jspにフォワード
+/**
+ * マイページで購入物だけを表示するためのコントローラー
+ * ユーザーの購入物をList<Product>型で取得しmyPage.jspにフォワードする
+ * @author kazuo
+ */
 
 @WebServlet("/MyPageServlet")
 public class MyPageServlet extends HttpServlet {
@@ -32,17 +29,20 @@ public class MyPageServlet extends HttpServlet {
        
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// UserとList<Property>,List<Product>を生成
+		// セッションスコープからList<Property>型の取得
+		// List<Product>型を生成
 		HttpSession session = request.getSession();
 		List<Property> propertyList = (List<Property>)session.getAttribute("propertyList");
 		List<Product> myProductList = new ArrayList<>();
 		
-		// PropertyListからproductIdを取得。productIdからproductDeatilを取得しList<Product>に追加
+		// List<Property>型の各要素からproductIdを取得
+		// 各要素のproductIdからProduct型のインスタンスを生成しList<Product>のaddメソッドを使用
 		ProductDetailDAO readProduct = new ProductDetailDAO();
 		for(Property property : propertyList) {
 			Product product = readProduct.ReadProductDetail(property.getProductId());
 			myProductList.add(product);
 		}
+		// List<Product>型をセッションスコープに保存
 		session.setAttribute("myProductList", myProductList);
 		
 		// ログインが確認できればmyPageにフォワード
@@ -51,6 +51,7 @@ public class MyPageServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/myPage.jsp");
 			dispatcher.forward(request, response);
 		} else {
+			// ログイン失敗したのでindex.jspにフォワード
 			response.sendRedirect("index.jsp");
 		}
 	}

@@ -18,14 +18,11 @@ import model.Product;
 import model.Property;
 import model.User;
 
-// productDetail.jspからGETリクエストを受けてpurchase.jspにフォワード
-// purchase.jspからPOSTリクエストを受けて購入処理をするためのコントローラー
-
-// 処理内容
-// 購入処理はPurchaseDAOのメソッドで、戻り値boolean型のexecute(String ユーザーID, String 商品ID)を使用
-// 引数に使用するものについては、まずセッションスコープからUser型とProduct型を取得し、getterでユーザーIDと商品IDを取得する
-// trueが返ってくれば購入成功でpurchaseDone.jspにフォワードし
-// falseが返ってくれば購入失敗でpurchaseFalse.jspにフォワードする
+/**
+ * productDetail.jspからGETリクエストを受けてpurchase.jspにフォワード
+ * purchase.jspからPOSTリクエストを受けて購入処理をするためのコントローラー
+ * @author kazuo
+ */
 
 @WebServlet("/PurchaseServlet")
 public class PurchaseServlet extends HttpServlet {
@@ -37,18 +34,19 @@ public class PurchaseServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// productIdとuserIdを取得
+		// セッションスコープからUser型とProduct型を取得
+		// getterでproductIdとuserIdを取得
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		Product productDetail = (Product)session.getAttribute("productDetail");
 		String userId = user.getUserId();
 		String productId = productDetail.getProductId();
 		
-		// 購入メソッドを実行し成功ならpropertyListを更新してpurchaseDone.jspにフォワード
-		// 失敗ならpurchaseFalse.jspにフォワード
+		// PurchaseDAOのexecuteメソッドを使用して購入処理を行う
 		PurchaseDAO purchaseDAO = new PurchaseDAO();
 		boolean purchaseDone = purchaseDAO.execute(userId, productId);
 		if(purchaseDone) {
+			// 処理成功ならList<Property>型を取得してセッションスコープに保存しpurchaseDone.jspにフォワード
 			PropertyDAO propertyDAO = new PropertyDAO();
 			List<Property> propertyList = new ArrayList<>();
 			propertyList = propertyDAO.getProperty(userId);
@@ -56,6 +54,7 @@ public class PurchaseServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/purchaseDone.jsp");
 			dispatcher.forward(request, response);
 		} else {
+			// 失敗ならpurchaseFalse.jspにフォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/purchaseFalse.jsp");
 			dispatcher.forward(request, response);
 		}

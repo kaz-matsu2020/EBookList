@@ -10,14 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-// ログアウトを処理するコントローラー
-// セッションスコープを削除してindex.jspにフォワード
+/**
+ * ログアウトを処理するコントローラー
+ * @author kazuo
+ */
 
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// セッションスコープを削除してindex.jspにフォワード
 		HttpSession session = request.getSession();
 		session.invalidate();
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
