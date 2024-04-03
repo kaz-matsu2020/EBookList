@@ -1,0 +1,141 @@
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .containerbo {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  }
+  .containerbo h1, h2 {
+    text-align: center;
+    color: #333333;
+  }
+  .containerbo a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #0066c0;
+  }
+  
+  .containermy {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .containermy h1, h2 {
+    margin: 0;
+    padding: 10px 0;
+  }
+
+  .productList {
+    display: inline-block;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 200px;
+  }
+
+  .productList a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+  }
+
+  .productList img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px 5px 0 0;
+  }
+
+  .productList p {
+    margin: 0;
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .containerPu {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  }
+  .containerPu h1, h2 {
+    text-align: center;
+    color: #333333;
+  }
+  form {
+    text-align: center;
+    margin-top: 20px;
+  }
+  input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #232f3e;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  input[type="submit"]:hover {
+    background-color: #232f3e;
+  }
+  .containerPu img {
+    display: block;
+    margin: 20px auto;
+    border: 3px solid #ffffff;
+    border-radius: 5px;
+    max-width: 100%;
+    height: auto;
+  }
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #232f3e;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .containerRegi a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #0066c0;
+  }
+  .containerRegi {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  }
+  .containerRegi h1, h2 {
+    text-align: center;
+    color: #333333;
+  }

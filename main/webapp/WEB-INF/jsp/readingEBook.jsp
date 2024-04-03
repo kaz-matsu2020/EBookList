@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>E-Book-List</title>
 </head>
+<header>
+  <%@ include file="isLogin.jsp" %>
+</header>
 <body>
 
 </body>

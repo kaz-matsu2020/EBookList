@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" type="text/css" href="../style.css">
+<link rel="stylesheet" type="text/css" href="./style.css">
 <c:forEach var="product" items="${productList}">
   <div class="productList">
     <a href="#" onclick="document.getElementById('productForm_${product.productId}').submit(); return false;">
