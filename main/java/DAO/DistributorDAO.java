@@ -9,9 +9,11 @@ import java.sql.SQLException;
 /* 販売業者の名前を取得するためのDAO */
 
 public class DistributorDAO {
-	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
-	private final String DB_USER = "sa";
-	private final String DB_PASS = "";
+	private final String DB_NAME = "EBookList";
+	private final String PROPATIES = "?characterEncoding=UTF-8&serverTimezone=Asia/Tokyo";
+	private final String JDBC_URL = "jdbc:mysql://エンドポイント/" + DB_NAME + PROPATIES;
+	private final String DB_USER = "ユーザー";
+	private final String DB_PASS = "パスワード";
 	
 	/* 戻り値String型
 	   引数はString 販売業者のID */
@@ -19,7 +21,7 @@ public class DistributorDAO {
 		String distributorName = null;
 		try {
 			// JDBCドライバを読み込む
-			Class.forName("org.h2.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			throw new IllegalStateException("JDBCを読み込めませんでした");
 		}

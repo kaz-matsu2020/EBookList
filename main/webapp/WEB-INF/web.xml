@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+version="2.4">
+    <!-- 初めに表示するファイルのリスト -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+        <!-- <welcome-file>index.html</welcome-file> -->
+    </welcome-file-list>
+
+   <!-- エラーページ -->
+   <!--
+    <error-page>
+        <error-code>500</error-code>
+        <location>エラーページのファイル</location>
+    </error-page>
+    -->
+
+    <!-- フィルターの設定 -->
+    <filter>
+        <filter-name>IndicateProduct</filter-name>
+        <filter-class>filter.IndicateProduct</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>IndicateProduct</filter-name>
+        <url-pattern>/EBookList/index.jsp</url-pattern>
+    </filter-mapping>
+
+    <!-- サーブレットの設定 -->
+    <servlet> 
+        <servlet-name>CommentDeleteServlet</servlet-name>
+        <servlet-class>servlet.CommentDeleteServlet</servlet-class>
+   </servlet> 
+   <!-- サーブレットの名前でservletタグのクラスと、URLを関連付ける -->
+   <servlet-mapping>
+        <servlet-name>CommentDeleteServlet</servlet-name>
+        <url-pattern>/EBookList/CommentDelete</url-pattern>
+   </servlet-mapping>
+    <servlet> 
+        <servlet-name>CommentPostServlet</servlet-name>
+        <servlet-class>servlet.CommentPostServlet</servlet-class>
+   </servlet> 
+   <!-- サーブレットの名前でservletタグのクラスと、URLを関連付ける -->
+   <servlet-mapping>
+        <servlet-name>CommentPostServlet</servlet-name>
+        <url-pattern>/EBookList/CommentPost</url-pattern>
+   </servlet-mapping>
+    <servlet> 
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>servlet.LoginServlet</servlet-class>
+   </servlet> 
+   <!-- サーブレットの名前でservletタグのクラスと、URLを関連付ける -->
+   <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/EBookList/Login</url-pattern>
+   </servlet-mapping>
+    <servlet> 
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>servlet.LogoutServlet</servlet-class>
+   </servlet> 
+   <!-- サーブレットの名前でservletタグのクラスと、URLを関連付ける -->
+   <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/EBookList/Logout</url-pattern>
+   </servlet-mapping>
+    <servlet> 
+        <servlet-name>MyPageServlet</servlet-name>
+        <servlet-class>servlet.MyPageServlet</servlet-class>
+   </servlet> 
+   <!-- サーブレットの名前でservletタグのクラスと、URLを関連付ける -->
+   <servlet-mapping>
+        <servlet-name>MyPageServlet</servlet-name>
+        <url-pattern>/EBookList/MyPage</url-pattern>
+   </servlet-mapping>
+    <servlet> 
+        <servlet-name>ProductDetailServlet</servlet-name>
+        <servlet-class>servlet.ProductDetailServlet</servlet-class>
+   </servlet> 
+   <!-- サーブレットの名前でservletタグのクラスと、URLを関連付ける -->
+   <servlet-mapping>
+        <servlet-name>ProductDetailServlet</servlet-name>
+        <url-pattern>/EBookList/ProductDetail</url-pattern>
+   </servlet-mapping>
+    <servlet> 
+        <servlet-name>PurchaseServlet</servlet-name>
+        <servlet-class>servlet.PurchaseServlet</servlet-class>
+   </servlet> 
+   <!-- サーブレットの名前でservletタグのクラスと、URLを関連付ける -->
+   <servlet-mapping>
+        <servlet-name>PurchaseServlet</servlet-name>
+        <url-pattern>/EBookList/Purchase</url-pattern>
+   </servlet-mapping>
+    <servlet> 
+        <servlet-name>ReadingEBookServlet</servlet-name>
+        <servlet-class>servlet.ReadingEBookServlet</servlet-class>
+   </servlet> 
+   <!-- サーブレットの名前でservletタグのクラスと、URLを関連付ける -->
+   <servlet-mapping>
+        <servlet-name>ReadingEBookServlet</servlet-name>
+        <url-pattern>/EBookList/ReadingEBook</url-pattern>
+   </servlet-mapping>
+    <servlet> 
+        <servlet-name>UserRegisterServlet</servlet-name>
+        <servlet-class>servlet.UserRegisterServlet</servlet-class>
+   </servlet> 
+   <!-- サーブレットの名前でservletタグのクラスと、URLを関連付ける -->
+   <servlet-mapping>
+        <servlet-name>UserRegisterServlet</servlet-name>
+        <url-pattern>/EBookList/UserRegister</url-pattern>
+   </servlet-mapping>
+</web-app>
