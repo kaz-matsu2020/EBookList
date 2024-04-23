@@ -17,6 +17,7 @@ import DAO.EvaluationCommentPostDAO;
 import DAO.PostedCheckDAO;
 import model.EvaluationComment;
 import model.IndicateProductLogic;
+import model.PreventXSSLogic;
 import model.Product;
 import model.User;
 
@@ -32,9 +33,10 @@ public class CommentPostServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 投稿に必要なデータはコメントのテキスト、ユーザーID、商品ID、現在時刻の4つ
-		// リクエストパラメータからコメントのテキスト取得
+		// XSS防止の為文字の置き換えを実行しリクエストパラメータからコメントのテキスト取得
 		request.setCharacterEncoding("UTF-8");
-		String text = request.getParameter("text");
+		PreventXSSLogic preventXSS = new PreventXSSLogic();
+		String text = preventXSS.preventXSS(request.getParameter("text"));
 		// セッションスコープからUser型を取得し、そこからuserIdを取得
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
