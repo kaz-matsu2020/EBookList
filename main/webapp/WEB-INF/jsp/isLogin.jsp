@@ -16,6 +16,7 @@
         <span>${user.name}さん</span>
         <a href="index.jsp">トップへ</a>
         <a href="MyPageServlet">マイページ</a>
+        <a href="ChangeUserInfoServlet">ユーザー情報変更</a>
         <a href="LogoutServlet">ログアウト</a>
       </p>
     </c:otherwise>

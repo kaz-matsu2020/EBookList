@@ -21,6 +21,14 @@ public class User implements Serializable{
 		this.name = name;
 	}
 	
+	public User(String userId, String pass, String mail, String name, int age) {
+		this.userId = userId;
+		this.pass = pass;
+		this.mail = mail;
+		this.name = name;
+		this.age = age;
+	}
+	
 	public void setUserId(String userId) { this.userId = userId; }
 	public void setPass(String pass) { this.pass = pass; }
 	public void setMail(String mail) { this.mail = mail; }

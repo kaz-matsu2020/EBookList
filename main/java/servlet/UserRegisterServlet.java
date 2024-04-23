@@ -52,7 +52,7 @@ public class UserRegisterServlet extends HttpServlet {
 			registerOK = userRegister.userRegister(userId, pass, mail, name, age);
 		} else {
 			// エラーメッセージを保存
-			errMsg = "ユーザーIDとパスワードは半角英数字6文字～10文字で入力してください。";
+			errMsg = "ユーザーIDとパスワードは半角英数字3文字～10文字で入力してください。";
 		}
 		
 		// ユーザーIDが重複している場合のエラーメッセージを保存

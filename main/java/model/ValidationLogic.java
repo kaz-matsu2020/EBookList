@@ -11,9 +11,9 @@ public class ValidationLogic {
 	public boolean idCheck(String userId) {
 		String checkId = userId.trim();
 		boolean isLongEnough = checkId.length() >= 3;
-		boolean isTooLong = checkId.length() > 10 ;
-		boolean isHalfChars = checkId.matches("^[\\\\x00-\\\\x7F]+$");
-		if(isLongEnough && isTooLong && isHalfChars) {
+		boolean isnotTooLong = checkId.length() <= 10 ;
+		boolean isHalfChars = checkId.matches("^[A-Za-z0-9]+$");
+		if(isLongEnough && isnotTooLong && isHalfChars) {
 			return true;
 		} else {
 			return false;
@@ -24,9 +24,9 @@ public class ValidationLogic {
 	public boolean passCheck(String pass) {
 		String checkPass = pass.trim();
 		boolean isLongEnough = checkPass.length() >= 3;
-		boolean isTooLong = checkPass.length() > 10 ;
-		boolean isHalfChars = checkPass.matches("^[\\\\x00-\\\\x7F]+$");
-		if(isLongEnough && isTooLong && isHalfChars) {
+		boolean isnotTooLong = checkPass.length() <= 10 ;
+		boolean isHalfChars = checkPass.matches("^[A-Za-z0-9]+$");
+		if(isLongEnough && isnotTooLong && isHalfChars) {
 			return true;
 		} else {
 			return false;
