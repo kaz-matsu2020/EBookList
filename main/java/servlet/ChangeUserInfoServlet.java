@@ -65,27 +65,27 @@ public class ChangeUserInfoServlet extends HttpServlet {
 			// 変更箇所だけ変更処理を行う
 			AnyChangesCheckLogic changeCheck = new AnyChangesCheckLogic();
 			ChangeUserInfoLogic changeUserInfo = new ChangeUserInfoLogic();
-			int changeCount = 0;
+			boolean isChanged = false;
 			if(changeCheck.changeCheckPass(userId, pass)) { 
-				changeCount += 1;
+				isChanged = true;
 				changeUserInfo.changeUserPass(userId, pass); 
 				}
 			if(changeCheck.changeCheckMail(userId, mail)) { 
-				changeCount += 1;
+				isChanged = true;
 				changeUserInfo.changeUserMail(userId, mail); 
 				}
 			if(changeCheck.changeCheckName(userId, name)) { 
-				changeCount += 1;
+				isChanged = true;
 				changeUserInfo.changeUserName(userId, name); 
 				}
 			if(changeCheck.changeCheckAge(userId, age)) { 
-				changeCount += 1;
+				isChanged = true;
 				changeUserInfo.changeUserAge(userId, age); 
 				}
-			if(changeCount == 0) { 
-				resultMsg = "変更箇所はありません";
-			} else {
+			if(isChanged) { 
 				resultMsg = "変更完了です";
+			} else {
+				resultMsg = "変更箇所はありません";
 			}
 			changeOK = true;
 		} else {
