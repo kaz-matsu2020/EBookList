@@ -3,7 +3,6 @@ package DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -14,7 +13,7 @@ import java.sql.SQLException;
 public class ChangeUserInfoDAO {
 	private final String DB_NAME = "EBookList";
 	private final String PROPATIES = "?characterEncoding=UTF-8&serverTimezone=Asia/Tokyo";
-	private final String JDBC_URL = "jdbc:mysql://エンドポイント/" + DB_NAME + PROPATIES;
+	private final String JDBC_URL = "jdbc:mySQL://エンドポント/" + DB_NAME + PROPATIES;
 	private final String DB_USER = "ユーザー名";
 	private final String DB_PASS = "パスワード";
 	
@@ -43,37 +42,19 @@ public class ChangeUserInfoDAO {
 			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS); 
 			
 			// sql処理を記述
-			String sql = "select user_id from users where user_id = ?";
+			String sql = "updata users set pass = ? where user_id = ?;";
 			PreparedStatement pStmt = con.prepareStatement(sql);
 			
 			// sql文中の｢?｣に使用する値を設定してSQL文を完成
-			pStmt.setString(1, userId);
+			pStmt.setString(1, pass);
+			pStmt.setString(2, userId);
 			
 			// selectを実行
-			ResultSet rs = pStmt.executeQuery();
-			if(rs.next()) {
-				try {
-					sql = "updata users set pass = ? where user_id = ?;";
-					pStmt = con.prepareStatement(sql);
-					pStmt.setString(1, pass);
-					pStmt.setString(2, userId);
-					int r = pStmt.executeUpdate();
-					// 変更成功ならtrueを格納
-					if(r != 0) { changeOK = true;}
-				} catch(SQLException e) {
-					e.printStackTrace();
-					return false;
-				} finally {
-					// データベース接続の切断
-					if (con != null) {
-						try {
-							con.close();
-						} catch(SQLException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			} 
+			int r = pStmt.executeUpdate();
+			
+			// 変更成功ならtrueを格納
+			if(r != 0) { changeOK = true;}
+			
 			return changeOK;
 			
 		} catch(SQLException e) {
@@ -106,37 +87,17 @@ public class ChangeUserInfoDAO {
 			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS); 
 			
 			// sql処理を記述
-			String sql = "select user_id from users where user_id = ?";
+			String sql = "updata users set mail = ? where user_id = ?;";
 			PreparedStatement pStmt = con.prepareStatement(sql);
 			
 			// sql文中の｢?｣に使用する値を設定してSQL文を完成
-			pStmt.setString(1, userId);
-			
+			pStmt.setString(1, mail);
+			pStmt.setString(2, userId);
 			// selectを実行
-			ResultSet rs = pStmt.executeQuery();
-			if(rs.next()) {
-				try {
-					sql = "updata users set mail = ? where user_id = ?;";
-					pStmt = con.prepareStatement(sql);
-					pStmt.setString(1, mail);
-					pStmt.setString(2, userId);
-					int r = pStmt.executeUpdate();
-					// 変更成功ならtrueを格納
-					if(r != 0) { changeOK = true;}
-				} catch(SQLException e) {
-					e.printStackTrace();
-					return false;
-				} finally {
-					// データベース接続の切断
-					if (con != null) {
-						try {
-							con.close();
-						} catch(SQLException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			} 
+			int r = pStmt.executeUpdate();
+			// 変更成功ならtrueを格納
+			if(r != 0) { changeOK = true;}
+
 			return changeOK;
 			
 		} catch(SQLException e) {
@@ -169,37 +130,17 @@ public class ChangeUserInfoDAO {
 			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS); 
 			
 			// sql処理を記述
-			String sql = "select user_id from users where user_id = ?";
+			String sql = "update users set name = ? where user_id = ?;";
 			PreparedStatement pStmt = con.prepareStatement(sql);
 			
 			// sql文中の｢?｣に使用する値を設定してSQL文を完成
-			pStmt.setString(1, userId);
-			
+			pStmt.setString(1, name);
+			pStmt.setString(2, userId);
 			// selectを実行
-			ResultSet rs = pStmt.executeQuery();
-			if(rs.next()) {
-				try {
-					sql = "update users set name = ? where user_id = ?;";
-					pStmt = con.prepareStatement(sql);
-					pStmt.setString(1, name);
-					pStmt.setString(2, userId);
-					int r = pStmt.executeUpdate();
-					// 変更成功ならtrueを格納
-					if(r != 0) { changeOK = true;}
-				} catch(SQLException e) {
-					e.printStackTrace();
-					return false;
-				} finally {
-					// データベース接続の切断
-					if (con != null) {
-						try {
-							con.close();
-						} catch(SQLException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			} 
+			int r = pStmt.executeUpdate();
+			// 変更成功ならtrueを格納
+			if(r != 0) { changeOK = true;}
+
 			return changeOK;
 			
 		} catch(SQLException e) {
@@ -232,37 +173,17 @@ public class ChangeUserInfoDAO {
 			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS); 
 			
 			// sql処理を記述
-			String sql = "select user_id from users where user_id = ?";
+			String sql = "update users set age = ? where user_id = ?;";
 			PreparedStatement pStmt = con.prepareStatement(sql);
 			
 			// sql文中の｢?｣に使用する値を設定してSQL文を完成
-			pStmt.setString(1, userId);
-			
+			pStmt.setInt(1, age);
+			pStmt.setString(2, userId);
 			// selectを実行
-			ResultSet rs = pStmt.executeQuery();
-			if(rs.next()) {
-				try {
-					sql = "update users set age = ? where user_id = ?;";
-					pStmt = con.prepareStatement(sql);
-					pStmt.setInt(1, age);
-					pStmt.setString(2, userId);
-					int r = pStmt.executeUpdate();
-					// 変更成功ならtrueを格納
-					if(r != 0) { changeOK = true;}
-				} catch(SQLException e) {
-					e.printStackTrace();
-					return false;
-				} finally {
-					// データベース接続の切断
-					if (con != null) {
-						try {
-							con.close();
-						} catch(SQLException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			}
+			int r = pStmt.executeUpdate();
+			// 変更成功ならtrueを格納
+			if(r != 0) { changeOK = true;}
+
 			return changeOK;
 			
 		} catch(SQLException e) {
