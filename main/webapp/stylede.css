@@ -2,18 +2,19 @@
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #fafafa;
   }
   .containerbo {
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #FFFFFF;
+    background-color: #fafafa;
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
   }
   .containerbo h1, h2 {
     text-align: center;
-    color: #333333;
+    color: #003333;
   }
   .containerbo a {
     display: block;
@@ -37,7 +38,7 @@
   .productList {
     display: inline-block;
     border: 1px solid #ddd;
-    background-color: #fff;
+    background-color: #fafafa;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-right: 20px;
@@ -68,13 +69,13 @@
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #fafafa;
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
   }
   .containerPu h1, h2 {
     text-align: center;
-    color: #333333;
+    color: #003333;
   }
   form {
     text-align: center;
@@ -82,19 +83,19 @@
   }
   input[type="submit"] {
     padding: 10px 20px;
-    background-color: #232f3e;
-    color: #ffffff;
+    background-color: #003333;
+    color: #fafafa;
     border: none;
     border-radius: 5px;
     cursor: pointer;
   }
   input[type="submit"]:hover {
-    background-color: #232f3e;
+    background-color: #003333;
   }
   .containerPu img {
     display: block;
     margin: 20px auto;
-    border: 3px solid #ffffff;
+    border: 3px solid #fafafa;
     border-radius: 5px;
     max-width: 100%;
     height: auto;
@@ -114,11 +115,12 @@
     width: 100%;
     padding: 10px;
     margin-top: 20px;
-    background-color: #232f3e;
-    color: #ffffff;
+    background-color: #003333;
+    color: #fafafa;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
   }
   .containerRegi a {
     display: block;
@@ -131,11 +133,11 @@
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #FFFFFF;
+    background-color: #fafafa;
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
   }
   .containerRegi h1, h2 {
     text-align: center;
-    color: #333333;
+    color: #003333;
   }

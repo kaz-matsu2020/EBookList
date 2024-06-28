@@ -1,12 +1,12 @@
-
   body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #fafafa;
   }
   header {
-    background-color: #232f3e;
-    color: #ffffff;
+    background-color: #003333;
+    color: #fafafa;
     padding: 20px 0;
     text-align: center;
     font-family: Arial, sans-serif;
@@ -16,7 +16,7 @@
     padding: 5px;
   }
   .header a {
-    color: #ffffff;
+    color: #fafafa;
     text-decoration: none;
     margin-right: 10px;
   }
@@ -26,7 +26,7 @@
   }
   .header h2 {
       text-align: center;
-      color: #333333;
+      color: #003333;
   }
   .container {
     max-width: 1200px;
@@ -37,15 +37,18 @@
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #FFFFFF;
+    background-color: #fafafa;
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  }
+  .containerLogin h1,h2 {
+      text-align: center;
   }
   .containerDetail {
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #FFFFFF;
+    background-color: #fafafa;
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
   } 
@@ -53,7 +56,7 @@
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #FFFFFF;
+    background-color: #fafafa;
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
   }
@@ -65,7 +68,7 @@
   .ebook-item {
     border: 1px solid #dddddd;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #fafafa;
     border-radius: 5px;
   }
   form {
@@ -74,7 +77,7 @@
   imgDetail {
     display: block;
     margin: 0 auto 20px;
-    border: 3px solid #FFFFFF;
+    border: 3px solid #fafafa;
     border-radius: 5px;
   }
   input[type="text"],
@@ -82,7 +85,7 @@
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #DDDDDD;
+    border: 1px solid #dddddd;
     border-radius: 5px;
     box-sizing: border-box;
   }
@@ -90,14 +93,15 @@
     width: 100%;
     padding: 10px;
     margin-top: 10px;
-    background-color: #232f3e;
-    color: #FFFFFF;
+    background-color: #003333;
+    color: #fafafa;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
   }
   input[type="submit"]:hover {
-    background-color: #232f3e;
+    background-color: #003333;
   }
   .link {
     display: block;
@@ -121,7 +125,7 @@
     margin-bottom: 20px;
     border: 1px solid #ddd;
     width: 350px;
-    background-color: #fff;
+    background-color: #fafafa;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -133,7 +137,7 @@
     width: 100%;
     max-width: 300px;
     height: auto;
-    border: 3px solid #fff;
+    border: 3px solid #fafafa;
   }
   .productList h3 {
     font-size: 18px;
@@ -145,9 +149,9 @@
   .comments {
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #cccccc;
     border-radius: 5px;
-    background-color: #FFFFFF;
+    background-color: #fafafa;
   }
   .comment-item {
     margin-bottom: 10px;
@@ -162,7 +166,7 @@
     width: 100%;
     padding: 10px;
     margin: 5px 0;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #cccccc;
     border-radius: 5px;
     box-sizing: border-box;
   }
@@ -170,15 +174,15 @@
     width: 100%;
     padding: 10px;
     margin-top: 10px;
-    background-color: #FF9900;
-    color: #FFFFFF;
+    background-color: #ff9900;
+    color: #fafafa;
     border: none;
     border-radius: 5px;
     cursor: pointer;
   }
   .comment-form input[type="submit"]:hover {
-    background-color: #FF8800;
+    background-color: #ff8800;
   }
   .error-msg {
-    color: #FF0000;
+    color: #ff0000;
   }
