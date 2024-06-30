@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.AnyChangesCheckLogic;
 import model.ChangeUserInfoLogic;
 import model.User;
 import model.UserInfoReadLogic;
@@ -62,12 +63,29 @@ public class ChangeUserInfoServlet extends HttpServlet {
 		String errMsg = null;
 		if(valiCheckOK) {
 			// 変更箇所だけ変更処理を行う
+			AnyChangesCheckLogic changeCheck = new AnyChangesCheckLogic();
 			ChangeUserInfoLogic changeUserInfo = new ChangeUserInfoLogic();
-			boolean isChanged = changeUserInfo.changeUserInfo(userId, pass, mail, name, age);
-			if(isChanged) { 
-				resultMsg = "変更完了です";
-			} else {
+			int changeCount = 0;
+			if(changeCheck.changeCheckPass(userId, pass)) { 
+				changeCount += 1;
+				changeUserInfo.changeUserPass(userId, pass); 
+				}
+			if(changeCheck.changeCheckMail(userId, mail)) { 
+				changeCount += 1;
+				changeUserInfo.changeUserMail(userId, mail); 
+				}
+			if(changeCheck.changeCheckName(userId, name)) { 
+				changeCount += 1;
+				changeUserInfo.changeUserName(userId, name); 
+				}
+			if(changeCheck.changeCheckAge(userId, age)) { 
+				changeCount += 1;
+				changeUserInfo.changeUserAge(userId, age); 
+				}
+			if(changeCount == 0) { 
 				resultMsg = "変更箇所はありません";
+			} else {
+				resultMsg = "変更完了です";
 			}
 			changeOK = true;
 		} else {
