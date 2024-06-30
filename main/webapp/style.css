@@ -5,28 +5,35 @@
     background-color: #fafafa;
   }
   header {
-    background-color: #003333;
-    color: #fafafa;
+    background-image: url(images/泡と本5.png);
+    background-size: cover;
+    background-position: center;
+    background-blend-mode:lighten;
+    color: #303030;
     padding: 20px 0;
     text-align: center;
     font-family: Arial, sans-serif;
   }
-  .header p {
-    margin: 0;
-    padding: 5px;
+  .title-container {
+      background-color: rgba(235,235,245,0.7);
+      padding: 10px;
+      width: 700px;
+      margin: auto;
+      text-align: center;
   }
   .header a {
-    color: #fafafa;
+    color: #303030;
     text-decoration: none;
     margin-right: 10px;
+    font-size: 20px;
+    font-weight: bold;
   }
-  .header h1 {
-    margin-top: 0;
-    text-align: center;
-  }
-  .header h2 {
-      text-align: center;
-      color: #003333;
+  .userName {
+    color: #303030;
+    text-decoration: none;
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: bold;
   }
   .container {
     max-width: 1200px;
@@ -50,7 +57,7 @@
     padding: 20px;
     background-color: #fafafa;
     border-radius: 5px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.06);
   } 
   .containerF {
     max-width: 400px;
@@ -58,7 +65,7 @@
     padding: 20px;
     background-color: #fafafa;
     border-radius: 5px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.1);
   }
   .ebook-list {
     display: grid;
@@ -66,7 +73,7 @@
     gap: 20px;
   }
   .ebook-item {
-    border: 1px solid #dddddd;
+    border: 1px solid #303030;
     padding: 20px;
     background-color: #fafafa;
     border-radius: 5px;
@@ -90,10 +97,9 @@
     box-sizing: border-box;
   }
   input[type="submit"] {
-    width: 100%;
+    width: 140px;
     padding: 10px;
-    margin-top: 10px;
-    background-color: #003333;
+    background-color: #ffa500;
     color: #fafafa;
     border: none;
     border-radius: 5px;
@@ -101,7 +107,7 @@
     font-weight: bold;
   }
   input[type="submit"]:hover {
-    background-color: #003333;
+    background-color: #ffb833;
   }
   .link {
     display: block;
@@ -109,6 +115,10 @@
     margin-top: 20px;
     text-decoration: none;
     color: #666666;
+  }
+  .productImage {
+    float: left;
+    margin-right: 30px;
   }
   .product-info {
     margin-bottom: 20px;
@@ -122,12 +132,11 @@
   }
   .productList {
     padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    width: 350px;
+    margin-bottom: 10px;
+    width: 240px;
     background-color: #fafafa;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
   }
   .productList p {
     margin: 0;
@@ -143,15 +152,14 @@
     font-size: 18px;
     margin-bottom: 5px;
   }
-  .productList .price {
-    font-weight: bold;
-  }
   .comments {
     padding: 10px;
+    margin-top: 20px;
     margin-bottom: 20px;
     border: 1px solid #cccccc;
     border-radius: 5px;
     background-color: #fafafa;
+    clear: both;
   }
   .comment-item {
     margin-bottom: 10px;
@@ -161,6 +169,8 @@
   }
   .comment-form {
     margin-bottom: 20px;
+    text-align: center;
+    margin: auto;
   }
   .comment-form input[type="text"] {
     width: 100%;
@@ -171,18 +181,22 @@
     box-sizing: border-box;
   }
   .comment-form input[type="submit"] {
-    width: 100%;
+    width: 100px;
     padding: 10px;
-    margin-top: 10px;
-    background-color: #ff9900;
+    margin: 10px, auto, 10px;
+    background-color: #ffa500;
     color: #fafafa;
     border: none;
     border-radius: 5px;
     cursor: pointer;
   }
   .comment-form input[type="submit"]:hover {
-    background-color: #ff8800;
+    background-color: #ffb833;
   }
   .error-msg {
     color: #ff0000;
+  }
+  .button {
+      margin: auto;
+      text-align: center;
   }

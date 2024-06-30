@@ -11,26 +11,26 @@
         <div class="title">
             <h1 style="display: inline;">E-Book-List</h1>
         </div>
-    </div>
-    <div class="header">
-        <c:choose>
-            <c:when test="${empty user}">
-                <p>
-                    <a href="LoginServlet">ログイン</a>
-                    <a href="UserRegisterServlet">ユーザー登録</a>
-                    <a href="index.jsp">トップへ</a>
-                </p>
-            </c:when>
-            <c:otherwise>
-                <p>
-                    <span>${user.name}さん</span>
-                    <a href="index.jsp">トップへ</a>
-                    <a href="MyPageServlet">マイページ</a>
-                    <a href="ChangeUserInfoServlet">ユーザー情報変更</a>
-                    <a href="LogoutServlet">ログアウト</a>
-                </p>
-            </c:otherwise>
-        </c:choose>
+        <div class="header">
+            <c:choose>
+                <c:when test="${empty user}">
+                    <p>
+                        <a href="LoginServlet" class="Button">ログイン</a>
+                        <a href="UserRegisterServlet" class="Button">ユーザー登録</a>
+                        <a href="index.jsp" class="Button">トップへ</a>
+                    </p>
+                </c:when>
+                <c:otherwise>
+                    <p>
+                        <span class="userName">${user.name}さん | </span>
+                        <a href="index.jsp">トップへ</a>
+                        <a href="MyPageServlet">マイページ</a>
+                        <a href="ChangeUserInfoServlet">ユーザー情報変更</a>
+                        <a href="LogoutServlet">ログアウト</a>
+                    </p>
+                </c:otherwise>
+            </c:choose>
+        </div>
     </div>
 </body>
 </html>

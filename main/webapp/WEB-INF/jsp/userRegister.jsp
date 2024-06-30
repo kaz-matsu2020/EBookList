@@ -18,12 +18,14 @@
     <p>${errMsg}</p>
   </c:if>
   <form action="UserRegisterServlet" method="post">
-    ユーザーID:<input type="text" name="userId" placeholder="半角英数字3文字～10文字" required><br>
-    パスワード:<input type="password" name="pass" placeholder="半角英数字3文字～10文字" required><br>
-    MAIL:<input type="email" name="mail" placeholder="a@a" required><br>
-    名前:<input type="text" name="name" placeholder="メニューに表示する名前" required><br>
-    年齢:<input type="number" name="age" placeholder="年齢" required><br>
-    <input type="submit" value="登録">
+    <div class="left">
+    ユーザーID<input type="text" name="userId" placeholder="半角英数字3文字～10文字" required><br>
+    パスワード<input type="password" name="pass" placeholder="半角英数字3文字～10文字" required><br>
+    MAIL<input type="email" name="mail" placeholder="a@a" required><br>
+    名前<input type="text" name="name" placeholder="メニューに表示する名前" required><br>
+    年齢<input type="number" name="age" placeholder="年齢" required><br>
+    </div>
+    <div class="button"><input type="submit" value="登録"></div>
   </form>
   <a href="index.jsp">トップへ</a>
 </div>

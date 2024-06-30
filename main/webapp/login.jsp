@@ -14,11 +14,11 @@
 <div class="containerLogin">
   <h2>ログイン画面</h2>
   <form action="LoginServlet" method="post">
-    <label for="userId">ユーザーID:</label>
+    <label for="userId">ユーザーID</label>
     <input type="text" id="userId" name="userId" placeholder="半角英数字3文字～10文字" required>
-    <label for="pass">パスワード:</label>
+    <label for="pass">パスワード</label>
     <input type="password" id="pass" name="pass" placeholder="半角英数字3文字～10文字" required>
-    <input type="submit" value="ログイン">
+    <div class="button"><input type="submit" value="ログイン"></div>
   </form>
   <a href="UserRegisterServlet" class="link">ユーザー登録</a>
   <a href="index.jsp" class="link">トップへ</a>

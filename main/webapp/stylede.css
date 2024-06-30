@@ -136,8 +136,16 @@
     background-color: #fafafa;
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    color: #003333;
   }
   .containerRegi h1, h2 {
     text-align: center;
     color: #003333;
+  }
+  .button {
+    margin: auto;
+    text-align: center;
+  }
+  .left {
+      text-align: left;
   }

@@ -22,10 +22,12 @@
   </c:if>
   ユーザーID:${user.userId}
   <form action="ChangeUserInfoServlet" method="post">
-    パスワード:<input type="password" name="pass" value = "${user.pass}" required><br>
-    MAIL:<input type="email" name="mail" value = "${user.mail}" required><br>
-    名前:<input type="text" name="name" value = "${user.name}" required><br>
-    年齢:<input type="number" name="age" value = "${user.age}" required><br>
+  <div class="left">
+    パスワード<input type="password" name="pass" value = "${user.pass}" required><br>
+    MAIL<input type="email" name="mail" value = "${user.mail}" required><br>
+    名前<input type="text" name="name" value = "${user.name}" required><br>
+    年齢<input type="number" name="age" value = "${user.age}" required><br>
+  </div>
     <input type="submit" value="変更">
   </form>
   <a href="index.jsp">トップへ</a>
