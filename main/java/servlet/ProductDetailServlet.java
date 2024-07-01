@@ -28,6 +28,14 @@ public class ProductDetailServlet extends HttpServlet {
 		// リクエストパラメータから 文字列 productIdを取得
 		request.setCharacterEncoding("UTF-8");
 		String productId = request.getParameter("productId");
+		// myProductListから所有物かどうか判定
+		HttpSession session = request.getSession();
+		List<Product> myProductList = (List<Product>)session.getAttribute("myProductList");
+		boolean mine = false;
+		for(Product my : myProductList) {
+			if(my.getProductId().equals(productId)) { mine = true; }
+		}
+		session.setAttribute("mine", mine);
 		
 		// productIdを引数にして商品詳細,販売業者名,コメントを取得
 		// IndicateProductLogicのメソッドを使用する
@@ -36,7 +44,6 @@ public class ProductDetailServlet extends HttpServlet {
 		String distributorName = ipl.IndicateDistributorName(productId);
 		List<EvaluationComment> commentList = ipl.IndicateComment(productId);
 		// セッションスコープにProduct型、文字列 ditributorName,List<EvaluationComment>型を保存
-		HttpSession session = request.getSession();
 		session.setAttribute("productDetail", productDetail);
 		session.setAttribute("distributorName", distributorName);
 		session.setAttribute("commentList", commentList);

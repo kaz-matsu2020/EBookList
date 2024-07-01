@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DAO.GetUserNameDAO;
+import DAO.ProductDetailDAO;
 import DAO.PropertyDAO;
 import model.LoginLogic;
+import model.Product;
 import model.Property;
 import model.User;
 
@@ -55,8 +57,17 @@ public class LoginServlet extends HttpServlet {
 			List<Property> propertyList = new ArrayList<>();
 			propertyList = propertyDAO.getProperty(userId);
 			HttpSession session = request.getSession();
+			List<Product> myProductList = new ArrayList<>();
+			// List<Property>型の各要素からproductIdを取得
+			// 各要素のproductIdからProduct型のインスタンスを生成しList<Product>のaddメソッドを使用
+			ProductDetailDAO readProduct = new ProductDetailDAO();
+			for(Property property : propertyList) {
+				Product product = readProduct.ReadProductDetail(property.getProductId());
+				myProductList.add(product);
+			}
 			session.setAttribute("user", user);
 			session.setAttribute("propertyList", propertyList);
+			session.setAttribute("myProductList", myProductList);
 			// ログイン成功index.jspにフォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 			dispatcher.forward(request, response);

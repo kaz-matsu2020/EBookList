@@ -28,6 +28,7 @@ public class IndicateProduct implements Filter {
 	/**
 	 * List<Product>型をアプリケーションスコープに保存する
 	 */
+	
 	public void init(FilterConfig fConfig) throws ServletException {
 		// データベースからproductをReadしてListに入れる
 		List<Product> productList = new ArrayList<>();
@@ -44,4 +45,6 @@ public class IndicateProduct implements Filter {
 	}
 	
 	public void destroy() {	}
+	
+	
 }

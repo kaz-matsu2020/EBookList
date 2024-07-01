@@ -43,7 +43,7 @@
       </div>
     </c:forEach>
   </div>
-  <c:if test="${user.userId ne null}">
+  <c:if test="${user.userId ne null && mine eq true}">
     <div class="comment-form">
       <form action="CommentPostServlet" method="post">
         <input type="text" name="text" placeholder="レビュー投稿">
