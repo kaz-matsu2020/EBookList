@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import model.EvaluationComment;
 import model.IndicateProductLogic;
 import model.Product;
+import model.User;
 
 /**
  * eBookList.jspからGETリクエストを受けて商品の詳細(商品詳細、販売業者、商品についてるコメント)を表示するためのコントローラー
@@ -30,13 +31,15 @@ public class ProductDetailServlet extends HttpServlet {
 		String productId = request.getParameter("productId");
 		// myProductListから所有物かどうか判定
 		HttpSession session = request.getSession();
-		List<Product> myProductList = (List<Product>)session.getAttribute("myProductList");
+		User user = (User)session.getAttribute("user");
 		boolean mine = false;
-		for(Product my : myProductList) {
-			if(my.getProductId().equals(productId)) { mine = true; }
+		if(user != null) {
+			List<Product> myProductList = (List<Product>)session.getAttribute("myProductList");
+			for(Product my : myProductList) {
+				if(my.getProductId().equals(productId)) { mine = true; }
+			}
 		}
 		session.setAttribute("mine", mine);
-		
 		// productIdを引数にして商品詳細,販売業者名,コメントを取得
 		// IndicateProductLogicのメソッドを使用する
 		IndicateProductLogic ipl = new IndicateProductLogic();
