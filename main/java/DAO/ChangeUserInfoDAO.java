@@ -11,11 +11,9 @@ import java.sql.SQLException;
  */
 
 public class ChangeUserInfoDAO {
-	private final String DB_NAME = "EBookList";
-	private final String PROPATIES = "?characterEncoding=UTF-8&serverTimezone=Asia/Tokyo";
-	private final String JDBC_URL = "jdbc:mySQL://エンドポント/" + DB_NAME + PROPATIES;
-	private final String DB_USER = "ユーザー名";
-	private final String DB_PASS = "パスワード";
+	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
+	private final String DB_USER = "sa";
+	private final String DB_PASS = "";
 	
 	/**
 	 * 各メソッド
@@ -40,9 +38,8 @@ public class ChangeUserInfoDAO {
 		try {
 			// データベースに接続
 			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS); 
-			
 			// sql処理を記述
-			String sql = "updata users set pass = ? where user_id = ?;";
+			String sql = "update users set pass = ? where user_id = ?;";
 			PreparedStatement pStmt = con.prepareStatement(sql);
 			
 			// sql文中の｢?｣に使用する値を設定してSQL文を完成
@@ -87,7 +84,7 @@ public class ChangeUserInfoDAO {
 			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS); 
 			
 			// sql処理を記述
-			String sql = "updata users set mail = ? where user_id = ?;";
+			String sql = "update users set mail = ? where user_id = ?;";
 			PreparedStatement pStmt = con.prepareStatement(sql);
 			
 			// sql文中の｢?｣に使用する値を設定してSQL文を完成
