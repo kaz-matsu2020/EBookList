@@ -13,11 +13,9 @@ import model.EvaluationComment;
  */
 
 public class EvaluationCommentPostDAO {
-	private final String DB_NAME = "EBookList";
-	private final String PROPATIES = "?characterEncoding=UTF-8&serverTimezone=Asia/Tokyo";
-	private final String JDBC_URL = "jdbc:mysql://エンドポイント/" + DB_NAME + PROPATIES;
-	private final String DB_USER = "ユーザー";
-	private final String DB_PASS = "パスワード";
+	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/EBookList";
+	private final String DB_USER = "sa";
+	private final String DB_PASS = "";
 	
 	/**
 	 * CommentPostメソッド
@@ -25,10 +23,8 @@ public class EvaluationCommentPostDAO {
 	 * @return コメント投稿が成功したか失敗したかの真偽値
 	 */
 	
-	public boolean CommentPost (EvaluationComment comment){
+	public boolean CommentPost (EvaluationComment addComment){
 		// 引数EvaluationComment型からuserId,productId,投稿するコメント,日時を取得
-		EvaluationComment addComment = new EvaluationComment();
-		addComment = comment;
 		String userId = addComment.getUserId();
 		String productId = addComment.getProductId();
 		String evaComment = addComment.getEvaComment();
