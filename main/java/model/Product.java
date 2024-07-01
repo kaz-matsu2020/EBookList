@@ -63,4 +63,8 @@ public class Product implements Serializable {
 	public String getTopImage() { return topImage; }
 	public List<String> getDetailImage() { return detailImage; }
 	public String getIntroduceComment() { return introduceComment; }
+	
+	public String toString() {
+		return productId + ":" + name;
+	}
 }
